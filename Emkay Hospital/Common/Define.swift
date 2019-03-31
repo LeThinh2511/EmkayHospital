@@ -32,8 +32,13 @@ struct System {
 struct Messages {
     static let invalidURL = "Lỗi"
     static let configRequestFailure = "Lỗi"
-    static let wrongUsernameOrPassword = "Tên đăng nhập hoặc mật khẩu không đúng."
+    static let wrongUserNameOrPassword = "Tên đăng nhập hoặc mật khẩu không đúng."
     static let serverError = "Lỗi Server."
+    static let missingUserNameOrPassword = "Vui lòng điền đầy đủ thông tin."
+}
+
+struct Strings {
+    static let alertTitle = "Thông báo"
 }
 
 struct API {

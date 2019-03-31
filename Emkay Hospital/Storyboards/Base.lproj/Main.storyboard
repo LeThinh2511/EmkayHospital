@@ -1,24 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Doctor_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="MkZ-Kn-dga">
+                                <rect key="frame" x="186.5" y="76" width="41.5" height="49.5"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-Us-A1Y">
+                                <rect key="frame" x="0.0" y="358.5" width="414" height="179"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-oO-mkS">
+                                        <rect key="frame" x="20" y="22.5" width="374" height="44.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="resignKeyboard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="1Ux-ce-YYQ"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MIG-FN-bSV">
+                                        <rect key="frame" x="20" y="112" width="374" height="44.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="resignKeyboard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="xvt-FS-4p0"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="MIG-FN-bSV" firstAttribute="height" secondItem="y6A-oO-mkS" secondAttribute="height" id="1e9-VL-DLA"/>
+                                    <constraint firstItem="MIG-FN-bSV" firstAttribute="leading" secondItem="y6A-oO-mkS" secondAttribute="leading" id="1g6-GL-qvw"/>
+                                    <constraint firstItem="MIG-FN-bSV" firstAttribute="centerY" secondItem="gyh-Us-A1Y" secondAttribute="centerY" multiplier="3:2" id="Aed-Rs-UvO"/>
+                                    <constraint firstItem="y6A-oO-mkS" firstAttribute="height" secondItem="gyh-Us-A1Y" secondAttribute="height" multiplier="1:4" id="KAk-Ot-UcP"/>
+                                    <constraint firstItem="MIG-FN-bSV" firstAttribute="trailing" secondItem="y6A-oO-mkS" secondAttribute="trailing" id="Ul4-LJ-B9F"/>
+                                    <constraint firstAttribute="trailing" secondItem="y6A-oO-mkS" secondAttribute="trailing" constant="20" id="hby-nA-e3u"/>
+                                    <constraint firstItem="y6A-oO-mkS" firstAttribute="centerY" secondItem="gyh-Us-A1Y" secondAttribute="centerY" multiplier="1:2" id="rzy-7Z-7sH"/>
+                                    <constraint firstItem="y6A-oO-mkS" firstAttribute="leading" secondItem="gyh-Us-A1Y" secondAttribute="leading" constant="20" id="t1r-0I-f9y"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P35-1b-ISO">
+                                <rect key="frame" x="103.5" y="601.5" width="207" height="73.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="P35-1b-ISO" secondAttribute="height" multiplier="79:28" id="L2v-wh-g9a"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                                <state key="normal" title="Đăng nhập" backgroundImage="loginButton"/>
+                                <connections>
+                                    <action selector="didTapLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jcN-yi-2GG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng kí tại lễ tân!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dB6-4i-Rov">
+                                <rect key="frame" x="209" y="809" width="140.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.22745098039215686" green="0.41568627450980389" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emkay Hospital" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-xu-9sO">
+                                <rect key="frame" x="91.5" y="189.5" width="231" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <color key="textColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chưa có tài khoản?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8u-f4-UEa">
+                                <rect key="frame" x="58" y="809" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.54509803921568623" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerX" secondItem="v8u-f4-UEa" secondAttribute="trailing" constant="2" id="3Ef-Ev-aKd"/>
+                            <constraint firstItem="fcc-xu-9sO" firstAttribute="top" secondItem="MkZ-Kn-dga" secondAttribute="bottom" constant="64" id="Bsi-VP-uWy"/>
+                            <constraint firstItem="MkZ-Kn-dga" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="DF1-zK-Ttj"/>
+                            <constraint firstItem="fcc-xu-9sO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FYk-n6-iBe"/>
+                            <constraint firstItem="gyh-Us-A1Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KAm-dg-lpY"/>
+                            <constraint firstItem="gyh-Us-A1Y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="N96-FD-lIE"/>
+                            <constraint firstItem="dB6-4i-Rov" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="2" id="N9Q-os-Axq"/>
+                            <constraint firstItem="v8u-f4-UEa" firstAttribute="centerY" secondItem="dB6-4i-Rov" secondAttribute="centerY" id="Th9-XI-jXr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v8u-f4-UEa" secondAttribute="bottom" constant="32" id="X1X-wo-TaI"/>
+                            <constraint firstItem="P35-1b-ISO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z6j-nY-sQH"/>
+                            <constraint firstItem="P35-1b-ISO" firstAttribute="top" secondItem="gyh-Us-A1Y" secondAttribute="bottom" constant="64" id="aUo-E3-PiM"/>
+                            <constraint firstItem="gyh-Us-A1Y" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1:5" id="bN8-8q-faA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gyh-Us-A1Y" secondAttribute="trailing" id="btQ-a7-XaV"/>
+                            <constraint firstItem="P35-1b-ISO" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1:2" id="hk4-Pt-tBl"/>
+                            <constraint firstItem="MkZ-Kn-dga" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n6b-T9-l7N"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="MIG-FN-bSV" id="3OL-dW-oFU"/>
+                        <outlet property="userNameTextField" destination="y6A-oO-mkS" id="a10-OT-hXQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="loginButton" width="79" height="28"/>
+        <image name="logo" width="41.5" height="49.5"/>
+    </resources>
 </document>

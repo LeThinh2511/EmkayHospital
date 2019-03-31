@@ -16,8 +16,8 @@ class Service {
     private init() {
     }
     
-    func login(username: String, password: String, failure: @escaping (String) -> Void, success: @escaping (Int) -> Void) {
-        let parameters = [username, password]
+    func login(userName: String, password: String, failure: @escaping (String) -> Void, success: @escaping (Int) -> Void) {
+        let parameters = [userName, password]
         let url = API.login
         self.request(url: url, parameters: parameters) { (result) in
             switch result {
