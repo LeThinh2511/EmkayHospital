@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +15,40 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanchScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="JFk-1w-34c">
+                                <rect key="frame" x="155.5" y="386" width="103.5" height="124"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JFk-1w-34c" secondAttribute="height" multiplier="41:49" id="D2n-ds-Qjk"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanchScreenEllipse" translatesAutoresizingMaskIntoConstraints="NO" id="mFK-RY-MVY">
+                                <rect key="frame" x="-207" y="655" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mFK-RY-MVY" secondAttribute="height" multiplier="1:1" id="Dma-jp-DhW"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanchScreenEllipse" translatesAutoresizingMaskIntoConstraints="NO" id="czb-36-c6H">
+                                <rect key="frame" x="276" y="-94" width="276" height="276"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="czb-36-c6H" secondAttribute="height" multiplier="1:1" id="mft-HD-UXv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JFk-1w-34c" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4if-T9-YXZ"/>
+                            <constraint firstItem="czb-36-c6H" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8R2-Jg-mh9"/>
+                            <constraint firstItem="JFk-1w-34c" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AtL-EM-Yvp"/>
+                            <constraint firstItem="czb-36-c6H" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="top" id="G3Z-ZL-jIy"/>
+                            <constraint firstItem="mFK-RY-MVY" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="JXF-JF-8k4"/>
+                            <constraint firstItem="czb-36-c6H" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="2:3" id="LmZ-Ev-072"/>
+                            <constraint firstItem="mFK-RY-MVY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="X6W-K5-BIZ"/>
+                            <constraint firstItem="JFk-1w-34c" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="1:4" id="Ycy-QA-H8c"/>
+                            <constraint firstItem="mFK-RY-MVY" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xTS-HB-4ms"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +57,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lanchScreenEllipse" width="113.5" height="113.5"/>
+        <image name="lanchScreenLogo" width="41.5" height="49.5"/>
+    </resources>
 </document>
