@@ -28,3 +28,22 @@ struct System {
         static let width = UIScreen.main.bounds.width
     }
 }
+
+struct Messages {
+    static let invalidURL = "Lỗi"
+    static let configRequestFailure = "Lỗi"
+    static let wrongUsernameOrPassword = "Tên đăng nhập hoặc mật khẩu không đúng."
+    static let serverError = "Lỗi Server."
+}
+
+struct API {
+    static let baseURL = "http://13.70.25.1:8080/DOANHTTT/rest/"
+    static let login = API.baseURL + "account/login"
+    
+    struct Key {
+        static let errorCode = "errCode"
+        static let token = "token"
+        static let errorMessage = "value"
+        static let role = "role"
+    }
+}

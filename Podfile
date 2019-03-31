@@ -7,6 +7,7 @@ target 'Doctor Emkay Hospital' do
 
   # Pods for Doctor Emkay Hospital
   pod 'NVActivityIndicatorView'
+  pod 'Alamofire', '~> 4.7'
 
 end
 
@@ -16,5 +17,6 @@ target 'Patient Emkay Hospital' do
 
   # Pods for Patient Emkay Hospital
   pod 'NVActivityIndicatorView'
+  pod 'Alamofire', '~> 4.7'
 
 end
