@@ -34,6 +34,9 @@ class LoginViewController: BaseViewController {
         }
     }
     
+    @IBAction func didTapScanQRCodeButton(_ sender: Any) {
+    }
+    
     @IBAction func resignKeyboard(_ sender: Any) {
         self.view.endEditing(true)
     }

@@ -84,6 +84,16 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.54509803921568623" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4A-o7-qmP">
+                                <rect key="frame" x="294" y="531" width="100" height="30"/>
+                                <state key="normal" title="Scan QR Code">
+                                    <color key="titleColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapScanQRCodeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WNe-eK-GHI"/>
+                                    <segue destination="TSp-bb-SHg" kind="show" id="RKO-jP-s3B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -94,6 +104,8 @@
                             <constraint firstItem="gyh-Us-A1Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KAm-dg-lpY"/>
                             <constraint firstItem="gyh-Us-A1Y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="N96-FD-lIE"/>
                             <constraint firstItem="dB6-4i-Rov" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="2" id="N9Q-os-Axq"/>
+                            <constraint firstItem="I4A-o7-qmP" firstAttribute="top" secondItem="MIG-FN-bSV" secondAttribute="bottom" constant="16" id="PyD-j5-ft6"/>
+                            <constraint firstItem="I4A-o7-qmP" firstAttribute="trailing" secondItem="MIG-FN-bSV" secondAttribute="trailing" id="T9W-Ls-CNL"/>
                             <constraint firstItem="v8u-f4-UEa" firstAttribute="centerY" secondItem="dB6-4i-Rov" secondAttribute="centerY" id="Th9-XI-jXr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v8u-f4-UEa" secondAttribute="bottom" constant="32" id="X1X-wo-TaI"/>
                             <constraint firstItem="P35-1b-ISO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z6j-nY-sQH"/>
@@ -113,8 +125,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Code Reader View Controller-->
+        <scene sceneID="YIp-YQ-DaL">
+            <objects>
+                <viewController id="TSp-bb-SHg" customClass="QRCodeReaderViewController" customModule="Patient_Emkay_Hospital" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nzj-WH-T44">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmA-cp-RQg">
+                                <rect key="frame" x="165.5" y="747" width="83" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WmA-cp-RQg" secondAttribute="height" multiplier="1:1" id="JrH-yi-MSn"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="closeButton"/>
+                                <connections>
+                                    <action selector="didTapCloseButton:" destination="TSp-bb-SHg" eventType="touchUpInside" id="2Hz-nf-rx9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="83k-vT-Oue" firstAttribute="bottom" secondItem="WmA-cp-RQg" secondAttribute="bottom" constant="32" id="iMU-TM-MSx"/>
+                            <constraint firstItem="WmA-cp-RQg" firstAttribute="centerX" secondItem="nzj-WH-T44" secondAttribute="centerX" id="uK0-bB-EYT"/>
+                            <constraint firstItem="WmA-cp-RQg" firstAttribute="width" secondItem="nzj-WH-T44" secondAttribute="width" multiplier="1:5" id="y54-nz-xus"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="83k-vT-Oue"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="WmA-cp-RQg" id="9kj-eh-qrU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWK-rk-0rv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="-454"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="closeButton" width="32" height="32"/>
         <image name="loginButton" width="79" height="28"/>
         <image name="logo" width="41.5" height="49.5"/>
     </resources>
