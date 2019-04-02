@@ -58,7 +58,6 @@ extension QRCodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
             self.endLoading()
             self.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (userName) in
-            print(QRCode)
             self?.endLoading()
             let passwordTextFiled = UITextField()
             passwordTextFiled.isSecureTextEntry = true
