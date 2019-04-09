@@ -227,7 +227,6 @@
                                     <color key="titleColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapScanQRCodeButton:" destination="BhK-r5-8Rl" eventType="touchUpInside" id="CIt-rr-UIJ"/>
                                     <segue destination="TRI-Hr-UJX" kind="show" id="uPX-8f-HS8"/>
                                 </connections>
                             </button>

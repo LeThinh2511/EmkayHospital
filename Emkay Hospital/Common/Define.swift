@@ -12,13 +12,13 @@ import NVActivityIndicatorView
 struct Constant {
     struct ActivityIndicator {
         static let size: CGSize = {
-            let width = System.ScreenSize.width / 3
+            let width = System.ScreenSize.width / 8
             let height = width
             return CGSize(width: width, height: height)
         }()
         
         static let type = NVActivityIndicatorType.circleStrokeSpin
-        static let color: UIColor? = UIColor.red
+        static let color: UIColor? = UIColor(red: 58 / 255, green: 106 / 255, blue: 117 / 255, alpha: 1)
     }
 }
 

@@ -19,17 +19,22 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func didTapLoginButton(_ sender: Any) {
+        self.beginLoading()
         guard let userName = self.userNameTextField.text, let password = self.passwordTextField.text else {
             self.showAlert(title: Strings.alertTitle, message: Messages.missingUserNameOrPassword)
+            self.endLoading()
             return
         }
         if userName.isEmpty || password.isEmpty {
             self.showAlert(title: Strings.alertTitle, message: Messages.missingUserNameOrPassword)
+            self.endLoading()
             return
         }
         self.service.login(userName: userName, password: password, failure: { [weak self] (message) in
+            self?.endLoading()
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (roleInt) in
+            self?.endLoading()
             let role = Role(rawValue: roleInt) ?? .unknown
             switch role {
             case .doctor:
