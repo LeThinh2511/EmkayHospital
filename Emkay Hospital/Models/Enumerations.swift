@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum Role: String {
-    case patient = "patient"
-    case doctor = "doctor"
+enum Role: Int {
+    case patient = 1
+    case doctor = 2
     case unknown
 }

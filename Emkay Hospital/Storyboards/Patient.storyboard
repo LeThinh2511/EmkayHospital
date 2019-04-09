@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BhK-r5-8Rl">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Thông báo-->
+        <scene sceneID="koK-zo-NwL">
+            <objects>
+                <viewController storyboardIdentifier="NotificationViewController" id="GAM-6x-Qew" customClass="NotificationViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aCf-HZ-cCJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gO6-hu-F18"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Thông báo" image="notificationIcon" id="5jb-Ty-kWZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u3V-ff-Lj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="375" y="-967"/>
+        </scene>
+        <!--Hồ sơ-->
+        <scene sceneID="GPs-1A-qc9">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="xHx-Nn-LX9" customClass="ProfileViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gpq-qK-yBS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="0Fw-0H-qck"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Hồ sơ" image="profileIcon" id="xoH-gk-C0F"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VbC-OQ-Cy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-802" y="-967"/>
+        </scene>
+        <!--Patient Tab Bar Controller-->
+        <scene sceneID="DkD-O0-wt9">
+            <objects>
+                <tabBarController storyboardIdentifier="PatientTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="v1G-9b-9lL" customClass="PatientTabBarController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JQ5-0U-exk">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GAM-6x-Qew" kind="relationship" relationship="viewControllers" id="lkf-zf-ms6"/>
+                        <segue destination="gTQ-vy-sHA" kind="relationship" relationship="viewControllers" id="5HG-JV-OWU"/>
+                        <segue destination="xHx-Nn-LX9" kind="relationship" relationship="viewControllers" id="2sk-pD-oDQ"/>
+                        <segue destination="17j-vM-U4m" kind="relationship" relationship="viewControllers" id="SN0-0W-gIV"/>
+                        <segue destination="28V-Kz-Zcy" kind="relationship" relationship="viewControllers" id="enj-oz-LlW"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iad-iW-m3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-801" y="-236"/>
+        </scene>
+        <!--Góp ý-->
+        <scene sceneID="TnE-HD-GEk">
+            <objects>
+                <viewController storyboardIdentifier="FeedbackViewController" id="28V-Kz-Zcy" customClass="FeedbackViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZFJ-Pv-FK7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="t45-ro-0HI"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Góp ý" image="feedbackIcon" id="B51-Jg-w3l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O86-DM-bmd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="407" y="-236"/>
+        </scene>
+        <!--Đặt lịch khám-->
+        <scene sceneID="6Ku-Jr-vYo">
+            <objects>
+                <viewController storyboardIdentifier="ScheduleViewController" id="17j-vM-U4m" customClass="ScheduleViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R3p-9c-hrw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="IzG-IS-Abr"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Đặt lịch khám" image="alarmAddIcon" id="26f-sY-nPY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mj5-uR-H0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-802" y="666"/>
+        </scene>
+        <!--Thông tin-->
+        <scene sceneID="U25-sO-rhv">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" id="gTQ-vy-sHA" customClass="InfoViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zJN-nh-Rvr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Afr-Yy-vwF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Thông tin" image="infoIcon" id="HTj-6h-GGu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCU-du-4wV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="406" y="665"/>
+        </scene>
+        <!--Code Reader View Controller-->
+        <scene sceneID="i6e-EP-MX8">
+            <objects>
+                <viewController id="TRI-Hr-UJX" customClass="QRCodeReaderViewController" customModule="Patient_Emkay_Hospital" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rkt-Gt-ird">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCX-yh-rb5">
+                                <rect key="frame" x="150" y="560" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OCX-yh-rb5" secondAttribute="height" multiplier="1:1" id="mxn-Sa-vOn"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="closeButton"/>
+                                <connections>
+                                    <action selector="didTapCloseButton:" destination="TRI-Hr-UJX" eventType="touchUpInside" id="8z2-vg-hlz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OCX-yh-rb5" firstAttribute="centerX" secondItem="rkt-Gt-ird" secondAttribute="centerX" id="gC6-Ew-Kgk"/>
+                            <constraint firstItem="T5C-gJ-bLl" firstAttribute="bottom" secondItem="OCX-yh-rb5" secondAttribute="bottom" constant="32" id="gEg-w5-LCH"/>
+                            <constraint firstItem="OCX-yh-rb5" firstAttribute="width" secondItem="rkt-Gt-ird" secondAttribute="width" multiplier="1:5" id="pNd-JA-S9e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="T5C-gJ-bLl"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="OCX-yh-rb5" id="ewv-q4-KIs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jnq-wf-qV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1850" y="-236"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="boD-od-cxX">
+            <objects>
+                <viewController id="BhK-r5-8Rl" customClass="LoginViewController" customModule="Doctor_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ctm-2m-RAP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oCc-IN-WeI">
+                                <rect key="frame" x="167" y="52" width="41.5" height="49.5"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vm-LJ-IKk">
+                                <rect key="frame" x="0.0" y="267" width="375" height="133"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="CkY-Bh-bCF">
+                                        <rect key="frame" x="20" y="16.5" width="335" height="33.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="resignKeyboard:" destination="BhK-r5-8Rl" eventType="editingDidEndOnExit" id="HBY-ZF-nZI"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="8ST-MX-1op">
+                                        <rect key="frame" x="20" y="83" width="335" height="33.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="resignKeyboard:" destination="BhK-r5-8Rl" eventType="editingDidEndOnExit" id="O8a-kC-wEu"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="CkY-Bh-bCF" firstAttribute="centerY" secondItem="2Vm-LJ-IKk" secondAttribute="centerY" multiplier="1:2" id="9Cb-Jc-VuM"/>
+                                    <constraint firstItem="8ST-MX-1op" firstAttribute="trailing" secondItem="CkY-Bh-bCF" secondAttribute="trailing" id="A1K-9d-zgo"/>
+                                    <constraint firstItem="8ST-MX-1op" firstAttribute="height" secondItem="CkY-Bh-bCF" secondAttribute="height" id="IIK-3D-mQ3"/>
+                                    <constraint firstItem="8ST-MX-1op" firstAttribute="leading" secondItem="CkY-Bh-bCF" secondAttribute="leading" id="Lru-y1-ZNS"/>
+                                    <constraint firstItem="CkY-Bh-bCF" firstAttribute="leading" secondItem="2Vm-LJ-IKk" secondAttribute="leading" constant="20" id="Ot9-O2-xzT"/>
+                                    <constraint firstItem="CkY-Bh-bCF" firstAttribute="height" secondItem="2Vm-LJ-IKk" secondAttribute="height" multiplier="1:4" id="htw-C9-fVh"/>
+                                    <constraint firstItem="8ST-MX-1op" firstAttribute="centerY" secondItem="2Vm-LJ-IKk" secondAttribute="centerY" multiplier="3:2" id="j8U-AX-ec6"/>
+                                    <constraint firstAttribute="trailing" secondItem="CkY-Bh-bCF" secondAttribute="trailing" constant="20" id="t6y-Jx-IKt"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XG2-Dm-Htz">
+                                <rect key="frame" x="94" y="464" width="187.5" height="66.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XG2-Dm-Htz" secondAttribute="height" multiplier="79:28" id="nMr-yw-EsP"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                                <state key="normal" title="Đăng nhập" backgroundImage="loginButton"/>
+                                <connections>
+                                    <action selector="didTapLoginButton:" destination="BhK-r5-8Rl" eventType="touchUpInside" id="T3N-cf-VUl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng kí tại lễ tân!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhy-hf-ijW">
+                                <rect key="frame" x="189.5" y="614" width="140.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emkay Hospital" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4id-xp-UUk">
+                                <rect key="frame" x="72" y="165.5" width="231" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <color key="textColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chưa có tài khoản?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oh-fF-kN5">
+                                <rect key="frame" x="38.5" y="614" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.5450980392" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vfm-iQ-xc0">
+                                <rect key="frame" x="255" y="399.5" width="100" height="30"/>
+                                <state key="normal" title="Scan QR Code">
+                                    <color key="titleColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapScanQRCodeButton:" destination="BhK-r5-8Rl" eventType="touchUpInside" id="CIt-rr-UIJ"/>
+                                    <segue destination="TRI-Hr-UJX" kind="show" id="uPX-8f-HS8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XG2-Dm-Htz" firstAttribute="width" secondItem="ctm-2m-RAP" secondAttribute="width" multiplier="1:2" id="1pO-gC-3Yt"/>
+                            <constraint firstItem="oCc-IN-WeI" firstAttribute="top" secondItem="5qt-co-kaG" secondAttribute="top" constant="32" id="2mv-zd-cNI"/>
+                            <constraint firstItem="2Vm-LJ-IKk" firstAttribute="leading" secondItem="5qt-co-kaG" secondAttribute="leading" id="32N-ka-rOr"/>
+                            <constraint firstItem="2Vm-LJ-IKk" firstAttribute="height" secondItem="ctm-2m-RAP" secondAttribute="height" multiplier="1:5" id="7fg-it-4eM"/>
+                            <constraint firstItem="5qt-co-kaG" firstAttribute="centerX" secondItem="2oh-fF-kN5" secondAttribute="trailing" constant="2" id="8Tv-Rb-AfR"/>
+                            <constraint firstItem="2oh-fF-kN5" firstAttribute="centerY" secondItem="vhy-hf-ijW" secondAttribute="centerY" id="GXs-08-MAg"/>
+                            <constraint firstItem="4id-xp-UUk" firstAttribute="centerX" secondItem="ctm-2m-RAP" secondAttribute="centerX" id="Gi5-1x-KzM"/>
+                            <constraint firstItem="oCc-IN-WeI" firstAttribute="centerX" secondItem="ctm-2m-RAP" secondAttribute="centerX" id="Oao-QW-6dc"/>
+                            <constraint firstItem="Vfm-iQ-xc0" firstAttribute="trailing" secondItem="8ST-MX-1op" secondAttribute="trailing" id="OxR-pm-HIb"/>
+                            <constraint firstItem="2Vm-LJ-IKk" firstAttribute="centerY" secondItem="ctm-2m-RAP" secondAttribute="centerY" id="Rwu-bM-F02"/>
+                            <constraint firstItem="5qt-co-kaG" firstAttribute="trailing" secondItem="2Vm-LJ-IKk" secondAttribute="trailing" id="a0b-PC-VLp"/>
+                            <constraint firstItem="Vfm-iQ-xc0" firstAttribute="top" secondItem="8ST-MX-1op" secondAttribute="bottom" constant="16" id="npw-2y-hyl"/>
+                            <constraint firstItem="vhy-hf-ijW" firstAttribute="leading" secondItem="5qt-co-kaG" secondAttribute="centerX" constant="2" id="phc-XI-zxn"/>
+                            <constraint firstItem="XG2-Dm-Htz" firstAttribute="centerX" secondItem="ctm-2m-RAP" secondAttribute="centerX" id="v3v-PW-Scm"/>
+                            <constraint firstItem="4id-xp-UUk" firstAttribute="top" secondItem="oCc-IN-WeI" secondAttribute="bottom" constant="64" id="wcb-8j-psD"/>
+                            <constraint firstItem="XG2-Dm-Htz" firstAttribute="top" secondItem="2Vm-LJ-IKk" secondAttribute="bottom" constant="64" id="z7i-tf-iIy"/>
+                            <constraint firstItem="5qt-co-kaG" firstAttribute="bottom" secondItem="2oh-fF-kN5" secondAttribute="bottom" constant="32" id="zOZ-2h-fsk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5qt-co-kaG"/>
+                    </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="8ST-MX-1op" id="NVS-Gb-JeQ"/>
+                        <outlet property="userNameTextField" destination="CkY-Bh-bCF" id="MhO-GR-Dqn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oit-qZ-7BB" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2714" y="-236"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="alarmAddIcon" width="36" height="36"/>
+        <image name="closeButton" width="32" height="32"/>
+        <image name="feedbackIcon" width="36" height="36"/>
+        <image name="infoIcon" width="36" height="36"/>
+        <image name="loginButton" width="79" height="28"/>
+        <image name="logo" width="41.5" height="49.5"/>
+        <image name="notificationIcon" width="36" height="36"/>
+        <image name="profileIcon" width="36" height="36"/>
+    </resources>
+</document>

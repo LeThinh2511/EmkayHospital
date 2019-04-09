@@ -46,7 +46,7 @@ struct Strings {
 }
 
 struct API {
-    static let baseURL = "http://13.70.25.1:8080/DOANHTTT/rest/"
+    static let baseURL = "http://168.61.49.94:8080/DOANHTTT/rest/"
     static let login = API.baseURL + "account/login"
     static let checkQRCode = API.baseURL + "account/checkQR"
     static let updatePasswordByQRCode = API.baseURL + "account/updatePassByQR"

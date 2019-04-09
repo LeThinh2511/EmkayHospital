@@ -29,12 +29,21 @@ class LoginViewController: BaseViewController {
         }
         self.service.login(userName: userName, password: password, failure: { [weak self] (message) in
             self?.showAlert(title: Strings.alertTitle, message: message)
-        }) { [weak self] (role) in
-            self?.showAlert(title: Strings.alertTitle, message: "Login success with role: \(role)")
+        }) { [weak self] (roleInt) in
+            let role = Role(rawValue: roleInt) ?? .unknown
+            switch role {
+            case .doctor:
+                let storyboardName = UIStoryboard.doctorStoryboard
+                let viewController: DoctorTabBarController = UIStoryboard.initViewController(in: storyboardName)
+                self?.present(viewController, animated: true, completion: nil)
+            case .patient:
+                let storyboardName = UIStoryboard.patientStoryboard
+                let viewController: PatientTabBarController = UIStoryboard.initViewController(in: storyboardName)
+                self?.present(viewController, animated: true, completion: nil)
+            case .unknown:
+                self?.showAlert(title: Strings.alertTitle, message: Messages.wrongUserNameOrPassword)
+            }
         }
-    }
-    
-    @IBAction func didTapScanQRCodeButton(_ sender: Any) {
     }
     
     @IBAction func resignKeyboard(_ sender: Any) {
