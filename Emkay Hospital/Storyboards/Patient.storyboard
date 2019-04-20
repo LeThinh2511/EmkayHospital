@@ -53,9 +53,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="xHx-Nn-LX9" kind="relationship" relationship="viewControllers" id="2sk-pD-oDQ"/>
                         <segue destination="GAM-6x-Qew" kind="relationship" relationship="viewControllers" id="lkf-zf-ms6"/>
                         <segue destination="gTQ-vy-sHA" kind="relationship" relationship="viewControllers" id="5HG-JV-OWU"/>
-                        <segue destination="xHx-Nn-LX9" kind="relationship" relationship="viewControllers" id="2sk-pD-oDQ"/>
                         <segue destination="17j-vM-U4m" kind="relationship" relationship="viewControllers" id="SN0-0W-gIV"/>
                         <segue destination="28V-Kz-Zcy" kind="relationship" relationship="viewControllers" id="enj-oz-LlW"/>
                     </connections>
@@ -150,7 +150,7 @@
         <!--Login View Controller-->
         <scene sceneID="boD-od-cxX">
             <objects>
-                <viewController id="BhK-r5-8Rl" customClass="LoginViewController" customModule="Doctor_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BhK-r5-8Rl" customClass="LoginViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ctm-2m-RAP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +161,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vm-LJ-IKk">
                                 <rect key="frame" x="0.0" y="267" width="375" height="133"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="CkY-Bh-bCF">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0393771445" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="CkY-Bh-bCF">
                                         <rect key="frame" x="20" y="16.5" width="335" height="33.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -170,7 +170,7 @@
                                             <action selector="resignKeyboard:" destination="BhK-r5-8Rl" eventType="editingDidEndOnExit" id="HBY-ZF-nZI"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="8ST-MX-1op">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0000" borderStyle="roundedRect" placeholder="Mật khẩu" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="8ST-MX-1op">
                                         <rect key="frame" x="20" y="83" width="335" height="33.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -261,6 +261,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oit-qZ-7BB" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2714" y="-236"/>
+        </scene>
+        <!--Select Patient View Controller-->
+        <scene sceneID="dcC-04-8gi">
+            <objects>
+                <viewController storyboardIdentifier="SelectPatientViewController" id="T1B-YN-ypg" customClass="SelectPatientViewController" customModule="Patient_Emkay_Hospital" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2DI-wZ-d5r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WAm-nQ-wUF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="BHb-rR-kus">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chọn tài khoản" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3H-zU-YbE">
+                                            <rect key="frame" x="130" y="11.5" width="115" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="D3H-zU-YbE" firstAttribute="centerY" secondItem="BHb-rR-kus" secondAttribute="centerY" id="dwm-Sc-sIm"/>
+                                        <constraint firstItem="D3H-zU-YbE" firstAttribute="centerX" secondItem="BHb-rR-kus" secondAttribute="centerX" id="yne-vw-QnD"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PatientTableViewCell" id="50Q-As-Kay" customClass="PatientTableViewCell" customModule="Patient_Emkay_Hospital" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="50Q-As-Kay" id="LLL-ti-BII">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgD-H8-ScL">
+                                                    <rect key="frame" x="0.0" y="43" width="342" height="1"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="zbZ-gN-jvO"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lê Thịnh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoN-HH-TWo">
+                                                    <rect key="frame" x="15" y="11.5" width="66" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="CoN-HH-TWo" secondAttribute="bottom" constant="0.5" id="7l5-Qd-k3h"/>
+                                                <constraint firstItem="dgD-H8-ScL" firstAttribute="leading" secondItem="LLL-ti-BII" secondAttribute="leading" id="B21-HQ-ijS"/>
+                                                <constraint firstItem="CoN-HH-TWo" firstAttribute="top" secondItem="LLL-ti-BII" secondAttribute="topMargin" constant="0.5" id="Ie1-Np-qep"/>
+                                                <constraint firstAttribute="trailing" secondItem="dgD-H8-ScL" secondAttribute="trailing" id="a1e-lc-Lpb"/>
+                                                <constraint firstItem="CoN-HH-TWo" firstAttribute="centerY" secondItem="LLL-ti-BII" secondAttribute="centerY" id="aZT-5o-ECc"/>
+                                                <constraint firstItem="CoN-HH-TWo" firstAttribute="leading" secondItem="LLL-ti-BII" secondAttribute="leadingMargin" id="kc2-5F-Ug8"/>
+                                                <constraint firstAttribute="bottom" secondItem="dgD-H8-ScL" secondAttribute="bottom" id="qWI-gE-y0Q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.5450980392" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="userNameLabel" destination="CoN-HH-TWo" id="4r8-SM-sJb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="T1B-YN-ypg" id="lxL-p5-1hk"/>
+                                    <outlet property="delegate" destination="T1B-YN-ypg" id="X5n-GH-02L"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mk8-v3-zpU" firstAttribute="bottom" secondItem="WAm-nQ-wUF" secondAttribute="bottom" id="60f-dB-Hcl"/>
+                            <constraint firstItem="WAm-nQ-wUF" firstAttribute="top" secondItem="mk8-v3-zpU" secondAttribute="top" id="IxD-QP-hXL"/>
+                            <constraint firstItem="mk8-v3-zpU" firstAttribute="trailing" secondItem="WAm-nQ-wUF" secondAttribute="trailing" id="hlk-cv-gQl"/>
+                            <constraint firstItem="WAm-nQ-wUF" firstAttribute="leading" secondItem="mk8-v3-zpU" secondAttribute="leading" id="maE-GF-Vdr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mk8-v3-zpU"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="WAm-nQ-wUF" id="mz8-zJ-VC0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2b-n2-Zlw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2247" y="444"/>
         </scene>
     </scenes>
     <resources>

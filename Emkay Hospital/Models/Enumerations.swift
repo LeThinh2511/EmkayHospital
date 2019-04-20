@@ -13,3 +13,9 @@ enum Role: Int {
     case doctor = 2
     case unknown
 }
+
+enum Gender: String {
+    case male = "0"
+    case female = "1"
+    case unknown
+}

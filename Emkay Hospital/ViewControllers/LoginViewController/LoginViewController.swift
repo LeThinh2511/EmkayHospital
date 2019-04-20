@@ -43,7 +43,7 @@ class LoginViewController: BaseViewController {
                 self?.present(viewController, animated: true, completion: nil)
             case .patient:
                 let storyboardName = UIStoryboard.patientStoryboard
-                let viewController: PatientTabBarController = UIStoryboard.initViewController(in: storyboardName)
+                let viewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
                 self?.present(viewController, animated: true, completion: nil)
             case .unknown:
                 self?.showAlert(title: Strings.alertTitle, message: Messages.wrongUserNameOrPassword)

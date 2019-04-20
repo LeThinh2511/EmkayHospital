@@ -49,6 +49,7 @@ class BaseViewController: UIViewController {
         self.activityIndicator.addToCenter(of: self.view, with: size)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        gestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gestureRecognizer)
     }
     

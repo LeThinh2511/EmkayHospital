@@ -12,37 +12,61 @@ import Alamofire
 class Service {
     static let sharedInstance = Service()
     static var token = ""
+    static var idPatient = ""
     
     private init() {
+    }
+    
+    func getPatientInfo(failure: @escaping (String) -> Void, success: @escaping (Patient) -> Void) {
+        let url = API.getPatientInfo
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let parameters = [API.Key.idPatient : Service.idPatient]
+        self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<Patient>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let patient):
+                success(patient)
+            }
+        }
+    }
+    
+    func getListPatient(failure: @escaping (String) -> Void, success: @escaping ([Patient]) -> Void) {
+        let url = API.getListPatient
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        self.request(url: url, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: headers) { (result: ServiceResult<GetListPatientResult>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let getListPatientResult):
+                if getListPatientResult.errCode == 0 {
+                    success(getListPatientResult.listPatient)
+                } else {
+                    failure(getListPatientResult.value ?? Messages.unexpectedError)
+                }
+            }
+        }
     }
     
     func login(userName: String, password: String, failure: @escaping (String) -> Void, success: @escaping (Int) -> Void) {
         let arrayStringEncoding = ArrayStringEncoding(array: [userName, password])
         let url = API.login
         let headers = ["Content-Type": "application/json"]
-        self.request(url: url, method: .post, encoding: arrayStringEncoding, headers: headers) { (result) in
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: arrayStringEncoding, headers: headers) { (result: ServiceResult<LoginResult>) in
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let value):
-                guard let errorCode = value[API.Key.errorCode] as? Int else {
-                    failure(Messages.serverError)
-                    return
-                }
-                guard errorCode == 0 else {
-                    guard let errorMessage = value[API.Key.errorMessage] as? String else {
-                        failure(Messages.serverError)
+            case .success(let loginResult):
+                if loginResult.errCode == 0 {
+                    guard let role = loginResult.role else {
+                        failure(Messages.unexpectedError)
                         return
                     }
-                    failure(errorMessage)
-                    return
+                    Service.token = loginResult.token ?? ""
+                    success(role)
+                } else {
+                    failure(loginResult.value ?? Messages.unexpectedError)
                 }
-                guard let token = value[API.Key.token] as? String, let role = value[API.Key.role] as? Int else {
-                    failure(Messages.serverError)
-                    return
-                }
-                Service.token = token
-                success(role)
             }
         }
     }
@@ -51,28 +75,20 @@ class Service {
         let url = API.checkQRCode
         let stringEncoding = StringEncoding(string: QRCode)
         let headers = ["Content-Type": "application/json"]
-        self.request(url: url, method: .post, encoding: stringEncoding, headers: headers) { (result) in
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: stringEncoding, headers: headers) { (result: ServiceResult<CheckQRResult>) in
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let value):
-                guard let errorCode = value[API.Key.errorCode] as? Int else {
-                    failure(Messages.serverError)
-                    return
-                }
-                guard errorCode == 0 else {
-                    guard let errorMessage = value[API.Key.errorMessage] as? String else {
-                        failure(Messages.serverError)
+            case .success(let checkQRResult):
+                if checkQRResult.errCode == 0 {
+                    guard let userName = checkQRResult.userName else {
+                        failure(Messages.unexpectedError)
                         return
                     }
-                    failure(errorMessage)
-                    return
+                    success(userName)
+                } else {
+                    failure(checkQRResult.value ?? Messages.unexpectedError)
                 }
-                guard let userName = value[API.Key.userName] as? String else {
-                    failure(Messages.serverError)
-                    return
-                }
-                success(userName)
             }
         }
     }
@@ -81,46 +97,46 @@ class Service {
         let url = API.updatePasswordByQRCode
         let arrayStringEncoding = ArrayStringEncoding(array: [QRCode, newPassword])
         let headers = ["Content-Type": "application/json"]
-        self.request(url: url, method: .post, encoding: arrayStringEncoding, headers: headers) { (result) in
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: arrayStringEncoding, headers: headers) { (result: ServiceResult<ServiceResponse>) in
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let value):
-                guard let errorCode = value[API.Key.errorCode] as? Int else {
-                    failure(Messages.serverError)
+            case .success(let response):
+                guard let message = response.value else {
+                    failure(Messages.unexpectedError)
                     return
                 }
-                guard errorCode == 0 else {
-                    guard let errorMessage = value[API.Key.errorMessage] as? String else {
-                        failure(Messages.serverError)
-                        return
-                    }
-                    failure(errorMessage)
-                    return
+                if response.errCode == 0 {
+                    success(message)
+                } else {
+                    failure(message)
                 }
-                guard let message = value[API.Key.successMessage] as? String else {
-                    failure(Messages.serverError)
-                    return
-                }
-                success(message)
             }
         }
     }
     
-    private func request(url: String, method: HTTPMethod, encoding: ParameterEncoding, headers: HTTPHeaders?, completion: @escaping (ServiceResult<[String: Any]>) -> Void) {
-        Alamofire.request(url, method: method, parameters: nil, encoding: encoding, headers: headers)
+    private func request<T: Decodable>(url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, completion: @escaping (ServiceResult<T>) -> Void) {
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
             .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
+            .responseData { (response) in
                 switch response.result {
                 case .failure(_):
-                    completion(.failure(message: Messages.configRequestFailure))
+                    completion(.failure(message: Messages.unexpectedError))
                 case .success:
-                    let value = response.result.value as! [String: Any]
-                    completion(.success(data: value))
+                    guard let data = response.data else {
+                        completion(.failure(message: Messages.unexpectedError))
+                        return
+                    }
+                    do {
+                        let object = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(data: object))
+                    } catch let error {
+                        dump("Request error: \(error)")
+                        completion(.failure(message: Messages.unexpectedError))
+                    }
                 }
         }
     }
-    
 }
 
 enum ServiceResult<T> {

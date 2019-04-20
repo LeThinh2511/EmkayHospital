@@ -30,11 +30,11 @@ struct System {
 }
 
 struct Messages {
-    static let invalidURL = "Lỗi"
-    static let configRequestFailure = "Lỗi"
     static let wrongUserNameOrPassword = "Tên đăng nhập hoặc mật khẩu không đúng."
     static let serverError = "Lỗi Server."
     static let missingUserNameOrPassword = "Vui lòng điền đầy đủ thông tin."
+    static let getListPatientFailure = "Không thể hiện thị danh sách bệnh nhân."
+    static let unexpectedError = "Unexpected Error Occurred."
 }
 
 struct Strings {
@@ -50,6 +50,10 @@ struct API {
     static let login = API.baseURL + "account/login"
     static let checkQRCode = API.baseURL + "account/checkQR"
     static let updatePasswordByQRCode = API.baseURL + "account/updatePassByQR"
+    static let getInfo = API.baseURL + "account/getinfo"
+    static let changePassword = API.baseURL + "account/update_pass"
+    static let getListPatient = API.baseURL + "account/getListBenhNhan"
+    static let getPatientInfo = API.baseURL + "account/getBenhNhanById"
     
     struct Key {
         static let errorCode = "errCode"
@@ -58,5 +62,7 @@ struct API {
         static let role = "role"
         static let userName = "userName"
         static let successMessage = "value"
+        static let listPatient = "listBenhNhan"
+        static let idPatient = "idBenhNhan"
     }
 }
