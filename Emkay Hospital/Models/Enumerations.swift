@@ -18,4 +18,15 @@ enum Gender: String {
     case male = "0"
     case female = "1"
     case unknown
+    
+    var title: String! {
+        switch self {
+        case .female:
+            return "Nữ"
+        case .male:
+            return "Nam"
+        default:
+            return ""
+        }
+    }
 }
