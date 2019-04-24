@@ -32,7 +32,6 @@ class ProfileViewController: BaseViewController {
         guard let cell = self.tableView.cellForRow(at: indexPath) as? ProfileTableViewCell, let action = sender.titleLabel?.text else {
             return
         }
-        print(action)
         if action == Strings.save {
             self.beginLoading()
             Service.sharedInstance.updatePatientInfo(patient: cell.patient, failure: { [weak self] (message) in

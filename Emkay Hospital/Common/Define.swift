@@ -20,6 +20,13 @@ struct Constant {
         static let type = NVActivityIndicatorType.circleStrokeSpin
         static let color: UIColor? = UIColor(red: 58 / 255, green: 106 / 255, blue: 117 / 255, alpha: 1)
     }
+    
+    struct Color {
+        static let darkGreen: UIColor = UIColor(red: 58 / 255, green: 106 / 255, blue: 117 / 255, alpha: 1)
+        static let lightGreen: UIColor = UIColor(red: 102 / 255, green: 139 / 255, blue: 148 / 255, alpha: 1)
+    }
+    
+    static let feedbackMinLength = 25
 }
 
 struct System {
@@ -37,6 +44,8 @@ struct Messages {
     static let updatePatientInfoFailure = "Không thể cập nhật thông tin"
     static let updatePatientInfoSuccess = "Cập nhật thông tin thành công"
     static let unexpectedError = "Unexpected Error Occurred."
+    static let sendFeedbackSuccess = "Góp ý thành công"
+    static let feedbackNotLongEnough = "Nội dung góp ý cần lớn hơn \(Constant.feedbackMinLength) ký tự"
 }
 
 struct Strings {
@@ -59,6 +68,8 @@ struct API {
     static let getListPatient = API.baseURL + "account/getListBenhNhan"
     static let getPatientInfo = API.baseURL + "account/getBenhNhanById"
     static let updatePatientInfo = API.baseURL + "patient/updateInformation?idBenhNhan=%@"
+    static let getSpecialistList = API.baseURL + "recip/getChuyenKhoa"
+    static let sendFeedback = API.baseURL + "patient/comment"
     
     struct Key {
         static let errorCode = "errCode"
@@ -69,5 +80,7 @@ struct API {
         static let successMessage = "value"
         static let listPatient = "listBenhNhan"
         static let idPatient = "idBenhNhan"
+        static let idSpecialist = "idPhongBan"
+        static let feedback = "NoiDung"
     }
 }

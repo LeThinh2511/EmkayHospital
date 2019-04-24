@@ -384,10 +384,89 @@
                     <view key="view" contentMode="scaleToFill" id="ZFJ-Pv-FK7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-Gg-AWf">
+                                <rect key="frame" x="16" y="89" width="343" height="333.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Góp ý cho chúng tôi:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-16-6RB">
+                                <rect key="frame" x="104" y="36" width="167.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.2274509804" green="0.41568627450000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGP-QS-CqV">
+                                <rect key="frame" x="94" y="438.5" width="187.5" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SA-jU-TSQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.5450980392" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Chọn chuyên khoa">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSelectSpecialistButton:" destination="28V-Kz-Zcy" eventType="touchUpInside" id="P36-ds-0lr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="0SA-jU-TSQ" firstAttribute="leading" secondItem="ZGP-QS-CqV" secondAttribute="leading" id="29E-sz-icr"/>
+                                    <constraint firstAttribute="trailing" secondItem="0SA-jU-TSQ" secondAttribute="trailing" id="Ipu-K1-YwR"/>
+                                    <constraint firstItem="0SA-jU-TSQ" firstAttribute="top" secondItem="ZGP-QS-CqV" secondAttribute="top" id="UB8-9u-1ah"/>
+                                    <constraint firstAttribute="bottom" secondItem="0SA-jU-TSQ" secondAttribute="bottom" id="yJs-rm-m6p"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omr-sc-OYV">
+                                <rect key="frame" x="155.5" y="558" width="64" height="28"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.5450980392" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" title="Gửi">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapSendButton:" destination="28V-Kz-Zcy" eventType="touchUpInside" id="Mr3-eB-XTE"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Jfx-Gg-AWf" firstAttribute="centerX" secondItem="ZFJ-Pv-FK7" secondAttribute="centerX" id="6B7-Ce-EA6"/>
+                            <constraint firstItem="ZGP-QS-CqV" firstAttribute="top" secondItem="Jfx-Gg-AWf" secondAttribute="bottom" constant="16" id="DBu-xL-uRD"/>
+                            <constraint firstItem="Jfx-Gg-AWf" firstAttribute="top" secondItem="ev4-16-6RB" secondAttribute="bottom" constant="32" id="Gno-9v-oEg"/>
+                            <constraint firstItem="Jfx-Gg-AWf" firstAttribute="height" secondItem="ZFJ-Pv-FK7" secondAttribute="height" multiplier="1:2" id="HiO-6U-Ums"/>
+                            <constraint firstItem="t45-ro-0HI" firstAttribute="bottom" secondItem="omr-sc-OYV" secondAttribute="bottom" constant="32" id="IU9-ue-Wfe"/>
+                            <constraint firstItem="Jfx-Gg-AWf" firstAttribute="leading" secondItem="t45-ro-0HI" secondAttribute="leading" constant="16" id="M3i-EN-blg"/>
+                            <constraint firstItem="ZGP-QS-CqV" firstAttribute="centerX" secondItem="ZFJ-Pv-FK7" secondAttribute="centerX" id="Ryn-TV-J3R"/>
+                            <constraint firstItem="ZGP-QS-CqV" firstAttribute="width" secondItem="ZFJ-Pv-FK7" secondAttribute="width" multiplier="1:2" id="SOg-K7-oaT"/>
+                            <constraint firstItem="t45-ro-0HI" firstAttribute="trailing" secondItem="Jfx-Gg-AWf" secondAttribute="trailing" constant="16" id="TJr-Yp-Db7"/>
+                            <constraint firstItem="ev4-16-6RB" firstAttribute="centerX" secondItem="ZFJ-Pv-FK7" secondAttribute="centerX" id="eSr-tX-nfQ"/>
+                            <constraint firstItem="omr-sc-OYV" firstAttribute="centerX" secondItem="ZFJ-Pv-FK7" secondAttribute="centerX" id="k9V-pO-5gc"/>
+                            <constraint firstItem="ev4-16-6RB" firstAttribute="top" secondItem="t45-ro-0HI" secondAttribute="top" constant="16" id="t2O-fo-ydv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="t45-ro-0HI"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Góp ý" image="feedbackIcon" id="B51-Jg-w3l"/>
+                    <connections>
+                        <outlet property="dropdownContainer" destination="ZGP-QS-CqV" id="mT1-Br-AkG"/>
+                        <outlet property="feedbackTextView" destination="Jfx-Gg-AWf" id="4jl-2E-hZi"/>
+                        <outlet property="selectSpecialistButton" destination="0SA-jU-TSQ" id="BM3-T7-9Im"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O86-DM-bmd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

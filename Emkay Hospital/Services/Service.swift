@@ -17,6 +17,41 @@ class Service {
     private init() {
     }
     
+    func sendFeedback(feedback: String, idSpecialist: String, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
+        let url = API.sendFeedback
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let parameters = [API.Key.idSpecialist: idSpecialist, API.Key.feedback: feedback]
+        self.request(url: url, method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<ServiceResponse>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success()
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
+    func getSpecialistList(failure: @escaping (String) -> Void, success: @escaping ([Specialist]) -> Void) {
+        let url = API.getSpecialistList
+        let headers = ["Content-Type": "application/json"]
+        self.request(url: url, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: headers) { (result: ServiceResult<SpecialistList>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let specialistList):
+                if specialistList.errCode == 0 {
+                    success(specialistList.specialists)
+                } else {
+                    failure(specialistList.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
     func updatePatientInfo(patient: Patient, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
         let url = String(format: API.updatePatientInfo, Service.idPatient)
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
@@ -26,8 +61,12 @@ class Service {
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(_):
-                success()
+            case .success(let response):
+                if response.errCode == 0 {
+                    success()
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
             }
         }
     }
@@ -41,7 +80,11 @@ class Service {
             case .failure(let message):
                 failure(message)
             case .success(let patient):
-                success(patient)
+                if patient.errCode == 0 {
+                    success(patient)
+                } else {
+                    failure(patient.value ?? Messages.unexpectedError)
+                }
             }
         }
     }

@@ -9,6 +9,7 @@ target 'Doctor Emkay Hospital' do
   pod 'NVActivityIndicatorView'
   pod 'Alamofire', '~> 4.7'
   pod 'PMAlertController'
+  pod 'DropDown', '2.3.4'
 
 end
 
@@ -20,5 +21,6 @@ target 'Patient Emkay Hospital' do
   pod 'NVActivityIndicatorView'
   pod 'Alamofire', '~> 4.7'
   pod 'PMAlertController'
+  pod 'DropDown', '2.3.4'
 
 end
