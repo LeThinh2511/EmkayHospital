@@ -34,6 +34,8 @@ struct Messages {
     static let serverError = "Lỗi Server."
     static let missingUserNameOrPassword = "Vui lòng điền đầy đủ thông tin."
     static let getListPatientFailure = "Không thể hiện thị danh sách bệnh nhân."
+    static let updatePatientInfoFailure = "Không thể cập nhật thông tin"
+    static let updatePatientInfoSuccess = "Cập nhật thông tin thành công"
     static let unexpectedError = "Unexpected Error Occurred."
 }
 
@@ -43,6 +45,8 @@ struct Strings {
     static let enterPassword = "Nhập mật khẩu"
     static let ok = "OK"
     static let enter = "Nhập"
+    static let edit = "Chỉnh sửa"
+    static let save = "Lưu"
 }
 
 struct API {
@@ -54,6 +58,7 @@ struct API {
     static let changePassword = API.baseURL + "account/update_pass"
     static let getListPatient = API.baseURL + "account/getListBenhNhan"
     static let getPatientInfo = API.baseURL + "account/getBenhNhanById"
+    static let updatePatientInfo = API.baseURL + "patient/updateInformation?idBenhNhan=%@"
     
     struct Key {
         static let errorCode = "errCode"

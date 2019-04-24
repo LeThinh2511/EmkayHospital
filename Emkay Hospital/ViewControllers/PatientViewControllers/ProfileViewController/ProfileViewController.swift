@@ -27,6 +27,28 @@ class ProfileViewController: BaseViewController {
         self.setupTableView()
     }
     
+    @IBAction func didTapEditButton(_ sender: UIButton) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? ProfileTableViewCell, let action = sender.titleLabel?.text else {
+            return
+        }
+        print(action)
+        if action == Strings.save {
+            self.beginLoading()
+            Service.sharedInstance.updatePatientInfo(patient: cell.patient, failure: { [weak self] (message) in
+                self?.showAlert(title: Strings.alertTitle, message: Messages.updatePatientInfoFailure)
+                self?.endLoading()
+            }) { [weak self] () in
+                self?.showAlert(title: Strings.alertTitle, message: Messages.updatePatientInfoSuccess)
+                self?.endLoading()
+            }
+            sender.setTitle(Strings.edit, for: .normal)
+        } else {
+            sender.setTitle(Strings.save, for: .normal)
+        }
+        cell.isEditMode = !cell.isEditMode
+    }
+    
     private func setupTableView() {
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableView.automaticDimension

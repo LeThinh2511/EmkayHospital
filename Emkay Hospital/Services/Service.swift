@@ -17,6 +17,21 @@ class Service {
     private init() {
     }
     
+    func updatePatientInfo(patient: Patient, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
+        let url = String(format: API.updatePatientInfo, Service.idPatient)
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let info = [patient.phone, patient.name, patient.birthday, patient.gender?.rawValue, patient.address]
+        let arrayStringEncoding = ArrayStringEncoding(array: info)
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: arrayStringEncoding, headers: headers) { (result: ServiceResult<ServiceResponse>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(_):
+                success()
+            }
+        }
+    }
+    
     func getPatientInfo(failure: @escaping (String) -> Void, success: @escaping (Patient) -> Void) {
         let url = API.getPatientInfo
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
@@ -145,9 +160,9 @@ enum ServiceResult<T> {
 }
 
 struct ArrayStringEncoding: ParameterEncoding {
-    private let array: [String]
+    private let array: [String?]
     
-    init(array: [String]) {
+    init(array: [String?]) {
         self.array = array
     }
     
