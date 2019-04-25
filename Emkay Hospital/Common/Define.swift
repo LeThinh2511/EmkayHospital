@@ -56,6 +56,7 @@ struct Strings {
     static let enter = "Nhập"
     static let edit = "Chỉnh sửa"
     static let save = "Lưu"
+    static let cancel = "Huỷ"
 }
 
 struct API {

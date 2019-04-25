@@ -10,6 +10,9 @@ import UIKit
 
 class ProfileViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButtonTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var patient: Patient!
     
@@ -27,9 +30,20 @@ class ProfileViewController: BaseViewController {
         self.setupTableView()
     }
     
+    @IBAction func didTapCancelButton(_ sender: UIButton) {
+        self.editButtonTrailingConstraint.priority = UILayoutPriority(rawValue: 900)
+        let indexPath = IndexPath(row: 0, section: 0)
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? ProfileTableViewCell else {
+            return
+        }
+        sender.setTitle(Strings.edit, for: .normal)
+        cell.isEditMode = false
+        self.editButton.setTitle(Strings.edit, for: .normal)
+    }
+    
     @IBAction func didTapEditButton(_ sender: UIButton) {
         let indexPath = IndexPath(row: 0, section: 0)
-        guard let cell = self.tableView.cellForRow(at: indexPath) as? ProfileTableViewCell, let action = sender.titleLabel?.text else {
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? ProfileTableViewCell, let action = self.editButton.titleLabel?.text else {
             return
         }
         if action == Strings.save {
@@ -41,9 +55,12 @@ class ProfileViewController: BaseViewController {
                 self?.showAlert(title: Strings.alertTitle, message: Messages.updatePatientInfoSuccess)
                 self?.endLoading()
             }
-            sender.setTitle(Strings.edit, for: .normal)
+            self.editButton.setTitle(Strings.edit, for: .normal)
+            self.editButtonTrailingConstraint.priority = UILayoutPriority(rawValue: 900)
         } else {
-            sender.setTitle(Strings.save, for: .normal)
+            self.editButtonTrailingConstraint.priority = UILayoutPriority(rawValue: 500)
+            self.editButton.setTitle(Strings.save, for: .normal)
+            self.cancelButton.setTitle(Strings.cancel, for: .normal)
         }
         cell.isEditMode = !cell.isEditMode
     }
