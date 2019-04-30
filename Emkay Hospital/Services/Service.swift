@@ -17,6 +17,61 @@ class Service {
     private init() {
     }
     
+    func getMedicalRecord(idMedicalRecord: String,failure: @escaping (String) -> Void, success: @escaping (MedicalRecord) -> Void) {
+        let url = API.getMedicalRecord
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let parameters = [API.Key.idMedicalRecord: idMedicalRecord]
+        self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<MedicalRecord>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    response.getAttribute()
+                    success(response)
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
+    func getSimpleMedicalRecordList(idExamination: String, failure: @escaping (String) -> Void, success: @escaping ([SimpleMedicalRecord]) -> Void) {
+        let url = API.getSimpleMedicalRecordList
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let parameters = [API.Key.idExamination: idExamination]
+        self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<MedicalRecordList>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.simpleMedicalRecords ?? [])
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
+    func getExaminationList(failure: @escaping (String) -> Void, success: @escaping ([Examination]) -> Void) {
+        let url = API.getExaminationList
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let parameters = [API.Key.idPatient: Service.idPatient]
+        self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<ExaminationList>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.examinations ?? [])
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
     func sendFeedback(feedback: String, idSpecialist: String, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
         let url = API.sendFeedback
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
@@ -42,11 +97,11 @@ class Service {
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let specialistList):
-                if specialistList.errCode == 0 {
-                    success(specialistList.specialists)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.specialists)
                 } else {
-                    failure(specialistList.value ?? Messages.unexpectedError)
+                    failure(response.value ?? Messages.unexpectedError)
                 }
             }
         }
@@ -79,11 +134,11 @@ class Service {
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let patient):
-                if patient.errCode == 0 {
-                    success(patient)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response)
                 } else {
-                    failure(patient.value ?? Messages.unexpectedError)
+                    failure(response.value ?? Messages.unexpectedError)
                 }
             }
         }
@@ -96,11 +151,11 @@ class Service {
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let getListPatientResult):
-                if getListPatientResult.errCode == 0 {
-                    success(getListPatientResult.listPatient)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.listPatient)
                 } else {
-                    failure(getListPatientResult.value ?? Messages.unexpectedError)
+                    failure(response.value ?? Messages.unexpectedError)
                 }
             }
         }
@@ -114,16 +169,16 @@ class Service {
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let loginResult):
-                if loginResult.errCode == 0 {
-                    guard let role = loginResult.role else {
+            case .success(let response):
+                if response.errCode == 0 {
+                    guard let role = response.role else {
                         failure(Messages.unexpectedError)
                         return
                     }
-                    Service.token = loginResult.token ?? ""
+                    Service.token = response.token ?? ""
                     success(role)
                 } else {
-                    failure(loginResult.value ?? Messages.unexpectedError)
+                    failure(response.value ?? Messages.unexpectedError)
                 }
             }
         }
@@ -137,15 +192,15 @@ class Service {
             switch result {
             case .failure(let message):
                 failure(message)
-            case .success(let checkQRResult):
-                if checkQRResult.errCode == 0 {
-                    guard let userName = checkQRResult.userName else {
+            case .success(let response):
+                if response.errCode == 0 {
+                    guard let userName = response.userName else {
                         failure(Messages.unexpectedError)
                         return
                     }
                     success(userName)
                 } else {
-                    failure(checkQRResult.value ?? Messages.unexpectedError)
+                    failure(response.value ?? Messages.unexpectedError)
                 }
             }
         }

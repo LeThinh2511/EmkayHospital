@@ -57,6 +57,12 @@ struct Strings {
     static let edit = "Chỉnh sửa"
     static let save = "Lưu"
     static let cancel = "Huỷ"
+    static let emptyAttribute = "Không có nội dung"
+    static let examinationList = "Các đợt khám"
+    static let medicalRecordList = "Các hồ sơ khám bệnh trong đợt khám"
+    static let noExamination = "Chưa có thông tin đợt khám"
+    static let noMedicalRecord = "Chưa có thông tin hồ sơ khám bệnh"
+    static let selectAttribute = "Chọn"
 }
 
 struct API {
@@ -71,6 +77,9 @@ struct API {
     static let updatePatientInfo = API.baseURL + "patient/updateInformation?idBenhNhan=%@"
     static let getSpecialistList = API.baseURL + "recip/getChuyenKhoa"
     static let sendFeedback = API.baseURL + "patient/comment"
+    static let getExaminationList = API.baseURL + "recip/getDotKhamByIdBenhNhan"
+    static let getSimpleMedicalRecordList = API.baseURL + "recip/getHoSoByDotKham"
+    static let getMedicalRecord = API.baseURL + "patient/xemHoSoKhamBenh"
     
     struct Key {
         static let errorCode = "errCode"
@@ -83,5 +92,7 @@ struct API {
         static let idPatient = "idBenhNhan"
         static let idSpecialist = "idPhongBan"
         static let feedback = "NoiDung"
+        static let idExamination = "idHSDK"
+        static let idMedicalRecord = "idHoSo"
     }
 }
