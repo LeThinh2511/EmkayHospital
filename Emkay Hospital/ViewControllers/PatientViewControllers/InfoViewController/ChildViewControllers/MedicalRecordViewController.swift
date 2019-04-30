@@ -13,6 +13,10 @@ class MedicalRecordViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dropdownContainerView: UIView!
     @IBOutlet weak var attributeSelectionButton: UIButton!
+    @IBOutlet weak var examinationDateLabel: UILabel!
+    @IBOutlet weak var doctorNameLabel: UILabel!
+    @IBOutlet weak var roomNumberLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     var medicalRecord: MedicalRecord?
     var dropdown: DropDown!
@@ -34,6 +38,10 @@ class MedicalRecordViewController: BaseViewController {
         }) { [weak self] (medicalRecord) in
             self?.endLoading()
             self?.medicalRecord = medicalRecord
+            self?.examinationDateLabel.text = medicalRecord.time
+            self?.doctorNameLabel.text = medicalRecord.doctorName
+            self?.statusLabel.text = medicalRecord.statusTitle
+            self?.roomNumberLabel.text = medicalRecord.roomNumber
             medicalRecord.attributes.forEach({ (attribute) in
                 self?.dropdown.dataSource.append(attribute.name ?? "")
             })

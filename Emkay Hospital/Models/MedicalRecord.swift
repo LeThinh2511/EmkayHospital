@@ -19,6 +19,20 @@ class MedicalRecord: ServiceResponse {
     var record: String?
     var attributes = [Attribute]()
     
+    var statusTitle: String {
+        guard let rawValue = self.status else { return "" }
+        switch rawValue {
+        case "0":
+            return "Đang khám"
+        case "1":
+            return "Đang chờ"
+        case "2":
+            return "Đã khám"
+        default:
+            return ""
+        }
+    }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.specialistName = try container.decodeIfPresent(String.self, forKey: .specialistName)
