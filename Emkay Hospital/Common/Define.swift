@@ -80,6 +80,7 @@ struct API {
     static let getExaminationList = API.baseURL + "recip/getDotKhamByIdBenhNhan"
     static let getSimpleMedicalRecordList = API.baseURL + "recip/getHoSoByDotKham"
     static let getMedicalRecord = API.baseURL + "patient/xemHoSoKhamBenh"
+    static let getReexaminationList = API.baseURL + "patient/xemlichtaikham"
     
     struct Key {
         static let errorCode = "errCode"
