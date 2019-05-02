@@ -11,5 +11,6 @@ import UIKit
 extension UIStoryboardSegue {
     static let examinationToMedicalRecord = "ExaminationToMedicalRecord"
     static let overallMedicalRecordToExamination = "OverallMedicalRecordToExamination"
+    static let medicalRecordToPrescription = "MedicalRecordToPrescription"
     static let unreconizeIdentifier = "Did not recognize storyboard identifier"
 }

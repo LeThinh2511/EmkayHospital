@@ -60,6 +60,16 @@ class MedicalRecordViewController: BaseViewController {
         self.dropdown.show()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case UIStoryboardSegue.medicalRecordToPrescription:
+            let prescriptionViewController = segue.destination as! PrescriptionViewController
+            prescriptionViewController.idMedicalRecord = self.medicalRecordID
+        default:
+            assertionFailure(UIStoryboardSegue.unreconizeIdentifier)
+        }
+    }
+    
     private func setupDropdown() {
         self.dropdown = DropDown(anchorView: self.dropdownContainerView)
         self.dropdown.direction = .bottom

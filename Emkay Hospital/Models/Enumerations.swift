@@ -11,6 +11,7 @@ import Foundation
 enum Role: Int {
     case patient = 1
     case doctor = 2
+    case receipt = 3
     case unknown
 }
 

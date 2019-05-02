@@ -94,6 +94,7 @@ struct API {
     static let sendDeviceID = API.baseURL + "account/addDeviceId"
     static let scheduleExamination = API.baseURL + "patient/datLichKham?idBenhNhan=%@"
     static let updatePassword = API.baseURL + "account/update_pass"
+    static let getPrescription = API.baseURL + "bill/getDrugByHSKB"
     
     struct Key {
         static let errorCode = "errCode"
@@ -108,6 +109,7 @@ struct API {
         static let feedback = "NoiDung"
         static let idExamination = "idHSDK"
         static let idMedicalRecord = "idHoSo"
+        static let medicalRecordID = "idHSKB"
     }
 }
 

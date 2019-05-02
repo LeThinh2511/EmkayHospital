@@ -35,6 +35,24 @@ class Service {
         Service.idPatient = idPatient ?? ""
     }
     
+    func getPrescription(idMedicalRecord: String, failure: @escaping (String) -> Void, success: @escaping ([Drug]) -> Void) {
+        let url = API.getPrescription
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let parameters = [API.Key.medicalRecordID: idMedicalRecord]
+        self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<Prescription>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.drugs ?? [])
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
     func updatePassword(oldPassword: String, newPassword: String, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
         let url = API.updatePassword
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]

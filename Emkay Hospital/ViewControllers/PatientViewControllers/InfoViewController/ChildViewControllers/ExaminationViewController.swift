@@ -19,6 +19,7 @@ class ExaminationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.beginLoading()
         self.service.getSimpleMedicalRecordList(idExamination: self.examination.id, failure: { [weak self] (message) in
             self?.endLoading()
             self?.showAlert(title: Strings.alertTitle, message: message)

@@ -36,7 +36,7 @@ class LoginViewController: BaseViewController {
         }) { [weak self] (roleInt) in
             let role = Role(rawValue: roleInt) ?? .unknown
             switch role {
-            case .patient, .doctor:
+            case .patient, .doctor, .receipt:
                 self?.service.sendDeviceID(failure: { (message) in
                     self?.endLoading()
                     self?.showAlert(title: Strings.alertTitle, message: message)
@@ -49,6 +49,7 @@ class LoginViewController: BaseViewController {
                     self?.present(viewController, animated: true, completion: nil)
                 })
             case .unknown:
+                self?.endLoading()
                 self?.showAlert(title: Strings.alertTitle, message: Messages.wrongUserNameOrPassword)
             }
         }
