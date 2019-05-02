@@ -18,6 +18,11 @@ class BaseViewController: UIViewController {
         self.setupUI()
     }
     
+    deinit {
+        let viewControllerName = String(describing: self)
+        print("Deinit \(viewControllerName)")
+    }
+    
     func beginLoading() {
         if self.activityIndicator.isAnimating {
             return

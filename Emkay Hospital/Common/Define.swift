@@ -46,6 +46,7 @@ struct Messages {
     static let unexpectedError = "Unexpected Error Occurred."
     static let sendFeedbackSuccess = "Góp ý thành công"
     static let feedbackNotLongEnough = "Nội dung góp ý cần lớn hơn \(Constant.feedbackMinLength) ký tự"
+    static let accessTokenExpired = "Phiên làm việc hết hạn"
 }
 
 struct Strings {
@@ -76,11 +77,12 @@ struct API {
     static let getPatientInfo = API.baseURL + "account/getBenhNhanById"
     static let updatePatientInfo = API.baseURL + "patient/updateInformation?idBenhNhan=%@"
     static let getSpecialistList = API.baseURL + "recip/getChuyenKhoa"
-    static let sendFeedback = API.baseURL + "patient/comment"
+    static let sendFeedback = API.baseURL + "patient/comment?idPhongBan=%@"
     static let getExaminationList = API.baseURL + "recip/getDotKhamByIdBenhNhan"
     static let getSimpleMedicalRecordList = API.baseURL + "recip/getHoSoByDotKham"
     static let getMedicalRecord = API.baseURL + "patient/xemHoSoKhamBenh"
     static let getReexaminationList = API.baseURL + "patient/xemlichtaikham"
+    static let sendDeviceID = API.baseURL + "account/addDeviceId"
     
     struct Key {
         static let errorCode = "errCode"
@@ -96,4 +98,13 @@ struct API {
         static let idExamination = "idHSDK"
         static let idMedicalRecord = "idHoSo"
     }
+}
+
+struct NotificationName {
+    static let accessTokenExpired = Notification.Name("accessTokenExpired")
+}
+
+struct UserDefaultKey {
+    static let accessToken = "accessToken"
+    static let idPatient = "idPatient"
 }

@@ -89,9 +89,10 @@ class ProfileTableViewCell: BaseTableViewCell {
     }
     
     @IBAction func didTapSelectAccountButton(_ sender: Any) {
-        guard let viewController = self.viewController else { return }
-        let storyboardName = UIStoryboard.patientStoryboard
-        let selectPatientViewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
-        viewController.present(selectPatientViewController, animated: true, completion: nil)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let rootViewController = appDelegate.window?.rootViewController
+        rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
     }
 }

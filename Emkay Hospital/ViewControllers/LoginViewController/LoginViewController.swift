@@ -34,17 +34,18 @@ class LoginViewController: BaseViewController {
             self?.endLoading()
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (roleInt) in
-            self?.endLoading()
             let role = Role(rawValue: roleInt) ?? .unknown
             switch role {
-            case .doctor:
-                let storyboardName = UIStoryboard.doctorStoryboard
-                let viewController: DoctorTabBarController = UIStoryboard.initViewController(in: storyboardName)
-                self?.present(viewController, animated: true, completion: nil)
-            case .patient:
-                let storyboardName = UIStoryboard.patientStoryboard
-                let viewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
-                self?.present(viewController, animated: true, completion: nil)
+            case .patient, .doctor:
+                self?.service.sendDeviceID(failure: { (message) in
+                    self?.endLoading()
+                    self?.showAlert(title: Strings.alertTitle, message: message)
+                }, success: {
+                    self?.endLoading()
+                    let storyboardName = UIStoryboard.patientStoryboard
+                    let viewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
+                    self?.present(viewController, animated: true, completion: nil)
+                })
             case .unknown:
                 self?.showAlert(title: Strings.alertTitle, message: Messages.wrongUserNameOrPassword)
             }

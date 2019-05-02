@@ -11,10 +11,46 @@ import Alamofire
 
 class Service {
     static let sharedInstance = Service()
-    static var token = ""
-    static var idPatient = ""
+    static var token = "" {
+        didSet {
+            let key = UserDefaultKey.accessToken
+            UserDefaults.standard.setValue(Service.token, forKey: key)
+        }
+    }
+    static var idPatient = "" {
+        didSet {
+            let key = UserDefaultKey.idPatient
+            UserDefaults.standard.setValue(Service.idPatient, forKey: key)
+        }
+    }
+    
+    static var deviceID = ""
     
     private init() {
+        var key = UserDefaultKey.accessToken
+        let token = UserDefaults.standard.value(forKey: key) as? String
+        key = UserDefaultKey.idPatient
+        let idPatient = UserDefaults.standard.value(forKey: key) as? String
+        Service.token = token ?? ""
+        Service.idPatient = idPatient ?? ""
+    }
+    
+    func sendDeviceID(failure: @escaping (String) -> Void, success: @escaping () -> Void) {
+        let url = API.sendDeviceID
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let stringEncoding = StringEncoding(string: Service.deviceID)
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: stringEncoding, headers: headers) { (result: ServiceResult<ServiceResponse>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success()
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
     }
     
     func getReexaminationList(failure: @escaping (String) -> Void, success: @escaping ([Reexamination]) -> Void) {
@@ -91,10 +127,10 @@ class Service {
     }
     
     func sendFeedback(feedback: String, idSpecialist: String, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
-        let url = API.sendFeedback
+        let url = String(format: API.sendFeedback, idSpecialist)
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
-        let parameters = [API.Key.idSpecialist: idSpecialist, API.Key.feedback: feedback]
-        self.request(url: url, method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<ServiceResponse>) in
+        let stringEncoding = StringEncoding(string: feedback)
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: stringEncoding, headers: headers) { (result: ServiceResult<ServiceResponse>) in
             switch result {
             case .failure(let message):
                 failure(message)
@@ -246,7 +282,7 @@ class Service {
         }
     }
     
-    private func request<T: Decodable>(url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, completion: @escaping (ServiceResult<T>) -> Void) {
+    private func request<T: ServiceResponse>(url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, completion: @escaping (ServiceResult<T>) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
             .validate(statusCode: 200..<300)
             .responseData { (response) in
@@ -260,6 +296,10 @@ class Service {
                     }
                     do {
                         let object = try JSONDecoder().decode(T.self, from: data)
+                        if object.errCode == 2 {
+                            let notification = Notification(name: NotificationName.accessTokenExpired)
+                            NotificationCenter.default.post(notification)
+                        }
                         completion(.success(data: object))
                     } catch let error {
                         dump("Request error: \(error)")
