@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 class ProfileTableViewCell: BaseTableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,7 +20,10 @@ class ProfileTableViewCell: BaseTableViewCell {
     @IBOutlet weak var birthdayTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var datePickerContainerView: UIView!
+    @IBOutlet weak var dropdownView: UIView!
     
+    var dropdown = DropDown()
+    var changePasswordAlert: UIAlertController?
     
     var patient: Patient! {
         didSet {
@@ -64,6 +68,92 @@ class ProfileTableViewCell: BaseTableViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.dropdown.anchorView = self.dropdownView
+        self.dropdown.direction = .bottom
+        self.dropdown.backgroundColor = Constant.Color.darkGreen
+        self.dropdown.selectionBackgroundColor = Constant.Color.darkGreen
+        self.dropdown.textColor = UIColor.white
+        self.dropdown.cornerRadius = 5
+        self.dropdown.dataSource = [Strings.logout, Strings.changePasword, Strings.changeAccount]
+        self.dropdown.selectionAction = { [weak self] (index: Int, item: String) in
+            switch item {
+            case Strings.logout:
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                var key = UserDefaultKey.accessToken
+                UserDefaults.standard.set("", forKey: key)
+                key = UserDefaultKey.idPatient
+                UserDefaults.standard.set("", forKey: key)
+                key = UserDefaultKey.isNotFirstLaunch
+                UserDefaults.standard.set(false, forKey: key)
+                let rootViewController = appDelegate.window?.rootViewController
+                rootViewController?.dismiss(animated: true, completion: nil)
+            case Strings.changePasword:
+                guard let viewController = self?.viewController as? BaseViewController else {
+                    return
+                }
+                let changePasswordAlert = UIAlertController(title: Strings.changePasword, message: nil, preferredStyle: .alert)
+                changePasswordAlert.addTextField(configurationHandler: { (textField) in
+                    textField.placeholder = Strings.oldPassword
+                    textField.isSecureTextEntry = true
+                })
+                changePasswordAlert.addTextField(configurationHandler: { (textField) in
+                    textField.placeholder = Strings.newPassword
+                    textField.isSecureTextEntry = true
+                })
+                changePasswordAlert.addTextField(configurationHandler: { (textField) in
+                    textField.placeholder = Strings.confirmPassword
+                    textField.isSecureTextEntry = true
+                })
+                let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
+                changePasswordAlert.addAction(cancelAction)
+                let okAction = UIAlertAction(title: Strings.ok, style: .default, handler: { (okAction) in
+                    let oldPassword = changePasswordAlert.textFields?[0].text ?? ""
+                    let newPassword = changePasswordAlert.textFields?[1].text ?? ""
+                    let confirmPassword = changePasswordAlert.textFields?[2].text ?? ""
+                    if newPassword != confirmPassword {
+                        viewController.showAlert(title: Strings.alertTitle, message: Messages.newPasswordNotMatch)
+                        return
+                    }
+                    viewController.beginLoading()
+                    Service.sharedInstance.updatePassword(oldPassword: oldPassword, newPassword: newPassword, failure: { (message) in
+                        viewController.showAlert(title: Strings.alertTitle, message: message)
+                        viewController.endLoading()
+                    }, success: {
+                        viewController.endLoading()
+                        viewController.showAlert(title: Strings.alertTitle, message: Messages.updatePasswordSuccess)
+                    })
+                })
+                changePasswordAlert.addAction(okAction)
+                self?.changePasswordAlert = changePasswordAlert
+                viewController.present(changePasswordAlert, animated: true, completion: nil)
+            case Strings.changeAccount:
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                let rootViewController = appDelegate.window?.rootViewController
+                rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
+            default:
+                break
+            }
+        }
+    }
+    
+    @objc func changePasswordValidation() {
+        guard let alert = self.changePasswordAlert else { return }
+        let oldPassword = alert.textFields?[0].text ?? ""
+        let newPassword = alert.textFields?[1].text ?? ""
+        let confirmPassword = alert.textFields?[2].text ?? ""
+        if oldPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty {
+            alert.actions[1].isEnabled = false
+        } else {
+            alert.actions[1].isEnabled = true
+        }
+    }
+    
     @IBAction func didTapEditBirthdayButton(_ sender: Any) {
         let dateString = self.birthdayTextField.text ?? ""
         guard let date = Date.date(from: dateString) else { return }
@@ -88,11 +178,7 @@ class ProfileTableViewCell: BaseTableViewCell {
         self.patient.birthday = date.dateString()
     }
     
-    @IBAction func didTapSelectAccountButton(_ sender: Any) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let rootViewController = appDelegate.window?.rootViewController
-        rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
+    @IBAction func didTapAccountButton(_ sender: Any) {
+        self.dropdown.show()
     }
 }

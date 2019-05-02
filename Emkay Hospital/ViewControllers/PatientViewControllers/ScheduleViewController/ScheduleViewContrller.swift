@@ -34,7 +34,7 @@ class ScheduleViewController: BaseViewController {
     }
     
     @IBAction func didTapSelectDateButton(_ sender: Any) {
-        self.datePickerContainer.isHidden = false
+        self.datePickerContainer.isHidden = !self.datePickerContainer.isHidden
     }
     
     @IBAction func didTapSendButton(_ sender: Any) {

@@ -160,24 +160,37 @@
                                                         <constraint firstAttribute="height" constant="1" id="xOh-OH-HkL"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MU2-c8-eLq">
-                                                    <rect key="frame" x="31" y="77.5" width="111" height="26"/>
-                                                    <color key="backgroundColor" red="0.40000000000000002" green="0.5450980392" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                                    <state key="normal" title="Chọn tài khoản">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="didTapSelectAccountButton:" destination="6Ok-Yr-YIc" eventType="touchUpInside" id="txl-O1-kjq"/>
-                                                    </connections>
-                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xd5-Qm-IpQ">
+                                                    <rect key="frame" x="31" y="77.5" width="119.5" height="26"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MU2-c8-eLq">
+                                                            <rect key="frame" x="0.0" y="0.0" width="119.5" height="26"/>
+                                                            <color key="backgroundColor" red="0.40000000000000002" green="0.5450980392" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                                            <state key="normal" title="Tài khoản">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="didTapAccountButton:" destination="6Ok-Yr-YIc" eventType="touchUpInside" id="txl-O1-kjq"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="MU2-c8-eLq" secondAttribute="bottom" id="AJQ-yQ-iIt"/>
+                                                        <constraint firstAttribute="width" constant="119.5" id="BAd-Ik-rL0"/>
+                                                        <constraint firstItem="MU2-c8-eLq" firstAttribute="leading" secondItem="Xd5-Qm-IpQ" secondAttribute="leading" id="ZzJ-Jj-Y0e"/>
+                                                        <constraint firstItem="MU2-c8-eLq" firstAttribute="top" secondItem="Xd5-Qm-IpQ" secondAttribute="top" id="dpR-4i-N3A"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MU2-c8-eLq" secondAttribute="trailing" id="epz-PY-fus"/>
+                                                    </constraints>
+                                                </view>
                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2CA-kn-It8">
                                                     <rect key="frame" x="59.5" y="317" width="284.5" height="30"/>
                                                     <nil key="textColor"/>
@@ -287,7 +300,7 @@
                                                 <constraint firstItem="G0m-Qb-Jlw" firstAttribute="top" secondItem="iLe-RQ-CHD" secondAttribute="bottom" constant="16" id="915-8O-Gvz"/>
                                                 <constraint firstItem="4WJ-bq-Vrx" firstAttribute="centerY" secondItem="q39-Qv-6It" secondAttribute="centerY" id="9GP-cV-QP9"/>
                                                 <constraint firstItem="iLe-RQ-CHD" firstAttribute="leading" secondItem="i0N-9N-Ury" secondAttribute="leadingMargin" id="Arh-uc-pPy"/>
-                                                <constraint firstItem="MU2-c8-eLq" firstAttribute="top" secondItem="aeA-JM-Sog" secondAttribute="bottom" constant="8" id="BZi-vT-EqM"/>
+                                                <constraint firstItem="Xd5-Qm-IpQ" firstAttribute="top" secondItem="aeA-JM-Sog" secondAttribute="bottom" constant="8" id="B7j-uQ-rJb"/>
                                                 <constraint firstItem="iLe-RQ-CHD" firstAttribute="trailing" secondItem="i0N-9N-Ury" secondAttribute="trailingMargin" id="Bt5-Qj-Iqv"/>
                                                 <constraint firstItem="jlT-eq-2Xb" firstAttribute="leading" secondItem="IAT-fN-NdK" secondAttribute="trailing" constant="8" id="CJ9-Aj-KKk"/>
                                                 <constraint firstItem="TKx-oZ-UbP" firstAttribute="trailing" secondItem="pfc-5X-QL7" secondAttribute="trailing" id="EVd-SR-3mY"/>
@@ -311,12 +324,12 @@
                                                 <constraint firstItem="aeA-JM-Sog" firstAttribute="top" secondItem="i0N-9N-Ury" secondAttribute="topMargin" constant="20" id="XCu-uZ-LtZ"/>
                                                 <constraint firstItem="pfc-5X-QL7" firstAttribute="centerY" secondItem="rrc-2W-sYQ" secondAttribute="centerY" id="Zvn-FA-Ugv"/>
                                                 <constraint firstItem="2xA-pz-ZRA" firstAttribute="top" secondItem="3M2-0O-gr1" secondAttribute="bottom" constant="32" id="aRN-Zz-4MR"/>
-                                                <constraint firstItem="MU2-c8-eLq" firstAttribute="leading" secondItem="i0N-9N-Ury" secondAttribute="leadingMargin" constant="16" id="aZS-Gh-NKw"/>
                                                 <constraint firstItem="gJT-8r-5ei" firstAttribute="centerY" secondItem="4WJ-bq-Vrx" secondAttribute="centerY" id="avc-94-RLj"/>
                                                 <constraint firstItem="yy5-ls-gmb" firstAttribute="trailing" secondItem="i0N-9N-Ury" secondAttribute="trailingMargin" id="bmu-7t-G4Y"/>
                                                 <constraint firstItem="jlT-eq-2Xb" firstAttribute="width" secondItem="q39-Qv-6It" secondAttribute="width" id="cVO-hc-HhF"/>
                                                 <constraint firstItem="jlT-eq-2Xb" firstAttribute="centerY" secondItem="q39-Qv-6It" secondAttribute="centerY" id="dgE-4f-l2v"/>
                                                 <constraint firstItem="3M2-0O-gr1" firstAttribute="top" secondItem="q39-Qv-6It" secondAttribute="bottom" constant="32" id="emm-X7-9jh"/>
+                                                <constraint firstItem="05w-O0-oyC" firstAttribute="top" secondItem="Xd5-Qm-IpQ" secondAttribute="bottom" constant="32" id="gLW-Ol-UIf"/>
                                                 <constraint firstItem="TKx-oZ-UbP" firstAttribute="width" secondItem="pfc-5X-QL7" secondAttribute="width" id="hCu-sE-dBl"/>
                                                 <constraint firstItem="InV-fZ-ur3" firstAttribute="leading" secondItem="pfc-5X-QL7" secondAttribute="trailing" priority="800" constant="4" id="iff-QT-Tau"/>
                                                 <constraint firstItem="2xA-pz-ZRA" firstAttribute="leading" secondItem="rrc-2W-sYQ" secondAttribute="leading" id="k9B-bk-iVT"/>
@@ -325,10 +338,10 @@
                                                 <constraint firstItem="InV-fZ-ur3" firstAttribute="trailing" secondItem="DCD-7s-M9M" secondAttribute="trailing" id="mHg-vb-G0N"/>
                                                 <constraint firstItem="05w-O0-oyC" firstAttribute="leading" secondItem="i0N-9N-Ury" secondAttribute="leadingMargin" id="ngO-uM-l6f"/>
                                                 <constraint firstItem="aeA-JM-Sog" firstAttribute="leading" secondItem="i0N-9N-Ury" secondAttribute="leadingMargin" constant="16" id="nhD-ZJ-n01"/>
+                                                <constraint firstItem="Xd5-Qm-IpQ" firstAttribute="leading" secondItem="aeA-JM-Sog" secondAttribute="leading" id="oR2-qA-FIh"/>
                                                 <constraint firstItem="q39-Qv-6It" firstAttribute="width" secondItem="rrc-2W-sYQ" secondAttribute="width" id="oY7-d9-wpV"/>
                                                 <constraint firstItem="pfc-5X-QL7" firstAttribute="leading" secondItem="rrc-2W-sYQ" secondAttribute="trailing" constant="16" id="p35-Mi-PY5"/>
                                                 <constraint firstItem="4WJ-bq-Vrx" firstAttribute="leading" secondItem="jlT-eq-2Xb" secondAttribute="trailing" constant="16" id="pIg-IE-fFf"/>
-                                                <constraint firstItem="05w-O0-oyC" firstAttribute="top" secondItem="MU2-c8-eLq" secondAttribute="bottom" constant="32" id="qU3-8R-Sy1"/>
                                                 <constraint firstItem="gJT-8r-5ei" firstAttribute="width" secondItem="gJT-8r-5ei" secondAttribute="height" multiplier="1:1" id="sNj-Ox-Ytr"/>
                                                 <constraint firstItem="rrc-2W-sYQ" firstAttribute="width" secondItem="i0N-9N-Ury" secondAttribute="width" multiplier="1:30" id="sny-6G-2of"/>
                                                 <constraint firstItem="DCD-7s-M9M" firstAttribute="leading" secondItem="2CA-kn-It8" secondAttribute="leading" id="thY-DA-osq"/>
@@ -346,6 +359,7 @@
                                             <outlet property="birthdayTrailingConstraint" destination="Gs9-Qp-SPn" id="m8N-VR-lae"/>
                                             <outlet property="datePicker" destination="jAy-ja-Pgr" id="MvU-8X-LHe"/>
                                             <outlet property="datePickerContainerView" destination="TKx-oZ-UbP" id="nh8-3b-p4t"/>
+                                            <outlet property="dropdownView" destination="Xd5-Qm-IpQ" id="CGp-8S-gv4"/>
                                             <outlet property="editBirthdayButton" destination="InV-fZ-ur3" id="f0Q-Kt-no8"/>
                                             <outlet property="femaleRadioButton" destination="gJT-8r-5ei" id="FM3-cU-VVf"/>
                                             <outlet property="maleRadioButton" destination="jlT-eq-2Xb" id="iBw-im-NgR"/>
@@ -592,6 +606,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="339" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="577785010.46282697">
                                             <!--2019-04-24 07:50:10 +0000-->
+                                        </date>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                            <!--1970-01-01 11:00:00 +0000-->
                                         </date>
                                         <locale key="locale" localeIdentifier="vi"/>
                                     </datePicker>

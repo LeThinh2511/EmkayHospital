@@ -49,6 +49,8 @@ struct Messages {
     static let accessTokenExpired = "Phiên làm việc hết hạn"
     static let scheduleExaminationContentEmpty = "Nhập nội dung đặt lịch khám"
     static let scheduleExaminationRequestSent = "Đã gửi yêu cầu đặt lịch khám"
+    static let updatePasswordSuccess = "Đổi mật khẩu thành công"
+    static let newPasswordNotMatch = "Mật khẩu mới không khớp"
 }
 
 struct Strings {
@@ -66,6 +68,12 @@ struct Strings {
     static let noExamination = "Chưa có thông tin đợt khám"
     static let noMedicalRecord = "Chưa có thông tin hồ sơ khám bệnh"
     static let selectAttribute = "Chọn"
+    static let logout = "Đăng xuất"
+    static let changePasword = "Đổi mật khẩu"
+    static let changeAccount = "Tài khoản khác"
+    static let oldPassword = "Mật khẩu cũ"
+    static let newPassword = "Mật khẩu mới"
+    static let confirmPassword = "Xác nhận mật khẩu"
 }
 
 struct API {
@@ -74,7 +82,6 @@ struct API {
     static let checkQRCode = API.baseURL + "account/checkQR"
     static let updatePasswordByQRCode = API.baseURL + "account/updatePassByQR"
     static let getInfo = API.baseURL + "account/getinfo"
-    static let changePassword = API.baseURL + "account/update_pass"
     static let getListPatient = API.baseURL + "account/getListBenhNhan"
     static let getPatientInfo = API.baseURL + "account/getBenhNhanById"
     static let updatePatientInfo = API.baseURL + "patient/updateInformation?idBenhNhan=%@"
@@ -86,6 +93,7 @@ struct API {
     static let getReexaminationList = API.baseURL + "patient/xemlichtaikham"
     static let sendDeviceID = API.baseURL + "account/addDeviceId"
     static let scheduleExamination = API.baseURL + "patient/datLichKham?idBenhNhan=%@"
+    static let updatePassword = API.baseURL + "account/update_pass"
     
     struct Key {
         static let errorCode = "errCode"
