@@ -13,6 +13,7 @@ class ScheduleViewController: BaseViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var selectDateButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     var dateFormater: DateFormatter = {
         var dateFormater = DateFormatter()
@@ -20,10 +21,15 @@ class ScheduleViewController: BaseViewController {
         return dateFormater
     }()
     
+    var examinationRequests = [ExaminationRequest]()
+    let service = Service.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let minDate = Date()
         self.datePicker.minimumDate = minDate
+        self.getExaminationRequestList()
+        self.setupTableView()
     }
     
     @IBAction func didTapOKButton(_ sender: Any) {
@@ -51,7 +57,50 @@ class ScheduleViewController: BaseViewController {
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] () in
             self?.endLoading()
+            self?.getExaminationRequestList()
             self?.showAlert(title: Strings.alertTitle, message: Messages.scheduleExaminationRequestSent)
         }
+    }
+    
+    private func getExaminationRequestList() {
+        self.beginLoading()
+        self.service.getExaminationRequestList(failure: { [weak self] (message) in
+            self?.endLoading()
+            self?.showAlert(title: Strings.alertTitle, message: message)
+        }) { [weak self] (examinationRequests) in
+            self?.endLoading()
+            self?.examinationRequests = examinationRequests
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func setupTableView() {
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.tableFooterView = UIView()
+    }
+}
+
+extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.examinationRequests.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = ExaminationRequestTableViewCell.identifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ExaminationRequestTableViewCell
+        cell.examinationRequest = self.examinationRequests[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Strings.examinationRequests
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if self.examinationRequests.isEmpty {
+            return Strings.noExaminationRequest
+        }
+        return ""
     }
 }

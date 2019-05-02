@@ -74,6 +74,8 @@ struct Strings {
     static let oldPassword = "Mật khẩu cũ"
     static let newPassword = "Mật khẩu mới"
     static let confirmPassword = "Xác nhận mật khẩu"
+    static let noExaminationRequest = "Chưa có yêu cầu đặt lịch khám"
+    static let examinationRequests = "Danh sách lịch đã đặt"
 }
 
 struct API {
@@ -95,6 +97,7 @@ struct API {
     static let scheduleExamination = API.baseURL + "patient/datLichKham?idBenhNhan=%@"
     static let updatePassword = API.baseURL + "account/update_pass"
     static let getPrescription = API.baseURL + "bill/getDrugByHSKB"
+    static let getExaminationRequests = API.baseURL + "patient/getListDatLich"
     
     struct Key {
         static let errorCode = "errCode"
