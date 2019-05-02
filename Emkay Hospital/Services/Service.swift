@@ -35,6 +35,24 @@ class Service {
         Service.idPatient = idPatient ?? ""
     }
     
+    func scheduleExamination(content: String, date: String, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
+        let url = String(format: API.scheduleExamination, Service.idPatient)
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        let arrayStringEncoding = ArrayStringEncoding(array: [content, date])
+        self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: arrayStringEncoding, headers: headers) { (result: ServiceResult<ServiceResponse>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success()
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
     func sendDeviceID(failure: @escaping (String) -> Void, success: @escaping () -> Void) {
         let url = API.sendDeviceID
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]

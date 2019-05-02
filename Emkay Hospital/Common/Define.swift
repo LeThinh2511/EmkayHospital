@@ -47,6 +47,8 @@ struct Messages {
     static let sendFeedbackSuccess = "Góp ý thành công"
     static let feedbackNotLongEnough = "Nội dung góp ý cần lớn hơn \(Constant.feedbackMinLength) ký tự"
     static let accessTokenExpired = "Phiên làm việc hết hạn"
+    static let scheduleExaminationContentEmpty = "Nhập nội dung đặt lịch khám"
+    static let scheduleExaminationRequestSent = "Đã gửi yêu cầu đặt lịch khám"
 }
 
 struct Strings {
@@ -83,6 +85,7 @@ struct API {
     static let getMedicalRecord = API.baseURL + "patient/xemHoSoKhamBenh"
     static let getReexaminationList = API.baseURL + "patient/xemlichtaikham"
     static let sendDeviceID = API.baseURL + "account/addDeviceId"
+    static let scheduleExamination = API.baseURL + "patient/datLichKham?idBenhNhan=%@"
     
     struct Key {
         static let errorCode = "errCode"
