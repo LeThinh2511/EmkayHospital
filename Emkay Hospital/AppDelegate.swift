@@ -22,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        let key = UserDefaultKey.isNotFirstLaunch
+        let isNotFirstLaunch = UserDefaults.standard.bool(forKey: key)
+        if !isNotFirstLaunch {
+            return
+        }
         let storyboardName = UIStoryboard.patientStoryboard
         let selectPatientViewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
         self.window?.rootViewController?.present(selectPatientViewController, animated: true, completion: nil)

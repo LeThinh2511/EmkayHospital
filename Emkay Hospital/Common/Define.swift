@@ -110,4 +110,5 @@ struct NotificationName {
 struct UserDefaultKey {
     static let accessToken = "accessToken"
     static let idPatient = "idPatient"
+    static let isNotFirstLaunch = "isNotFirstLaunch"
 }
