@@ -44,6 +44,8 @@ class MultipleAttributeTableViewCell: BaseTableViewCell {
         for attribute in attributes {
             let singleAttributeView: SingleAttributeView = UIView.initFromNib()
             singleAttributeView.attribute = attribute
+            singleAttributeView.layoutIfNeeded()
+            singleAttributeView.layoutSubviews()
             self.stackView.addArrangedSubview(singleAttributeView)
         }
     }
