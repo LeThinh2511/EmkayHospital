@@ -62,6 +62,11 @@ class ScheduleViewController: BaseViewController {
         }
     }
     
+    override func dismissKeyboard() {
+        super.dismissKeyboard()
+        self.datePickerContainer.isHidden = true
+    }
+    
     private func getExaminationRequestList() {
         self.beginLoading()
         self.service.getExaminationRequestList(failure: { [weak self] (message) in
