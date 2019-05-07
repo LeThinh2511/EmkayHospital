@@ -35,6 +35,23 @@ class Service {
         Service.idPatient = idPatient ?? ""
     }
     
+    func getWorkdayList(failure: @escaping (String) -> Void, success: @escaping ([Workday]) -> Void) {
+        let url = API.getWorkdayList
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        self.request(url: url, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: headers) { (result: ServiceResult<WorkdayList>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.workdays ?? [])
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
     func getExaminationRequestList(failure: @escaping (String) -> Void, success: @escaping ([ExaminationRequest]) -> Void) {
         let url = API.getExaminationRequests
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]

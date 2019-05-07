@@ -42,8 +42,10 @@ class LoginViewController: BaseViewController {
                     self?.showAlert(title: Strings.alertTitle, message: message)
                 }, success: {
                     self?.endLoading()
-                    let key = UserDefaultKey.isNotFirstLaunch
+                    var key = UserDefaultKey.isNotFirstLaunch
                     UserDefaults.standard.set(true, forKey: key)
+                    key = UserDefaultKey.isDoctor
+                    UserDefaults.standard.set(role == .doctor, forKey: key)
                     let storyboardName = UIStoryboard.patientStoryboard
                     let viewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
                     self?.present(viewController, animated: true, completion: nil)

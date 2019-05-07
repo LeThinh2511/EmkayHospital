@@ -98,6 +98,7 @@ struct API {
     static let updatePassword = API.baseURL + "account/update_pass"
     static let getPrescription = API.baseURL + "bill/getDrugByHSKB"
     static let getExaminationRequests = API.baseURL + "patient/getListDatLich"
+    static let getWorkdayList = API.baseURL + "doctor/getLichLamViec"
     
     struct Key {
         static let errorCode = "errCode"
@@ -124,4 +125,6 @@ struct UserDefaultKey {
     static let accessToken = "accessToken"
     static let idPatient = "idPatient"
     static let isNotFirstLaunch = "isNotFirstLaunch"
+    static let isDoctor = "isDoctor"
+    static let isHeadDoctor = "isHeadDoctor"
 }

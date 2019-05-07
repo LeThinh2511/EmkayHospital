@@ -22,5 +22,6 @@ target 'Patient Emkay Hospital' do
   pod 'Alamofire', '~> 4.7'
   pod 'PMAlertController'
   pod 'DropDown', '2.3.4'
+  pod 'JTAppleCalendar', '~> 7.0'
 
 end

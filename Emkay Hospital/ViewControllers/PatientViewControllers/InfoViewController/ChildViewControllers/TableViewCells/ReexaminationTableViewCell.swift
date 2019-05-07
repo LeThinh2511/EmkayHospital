@@ -19,7 +19,7 @@ class ReexaminationTableViewCell: BaseTableViewCell {
             self.dateLabel.text = self.reexamination.date
             self.doctorNameLabel.text = self.reexamination.doctorName
             self.roomLabel.text = "\(self.reexamination.roomName ?? "") - \(self.reexamination.roomNumber ?? "")"
-            self.shiftLabel.text = self.reexamination.shift
+            self.shiftLabel.text = self.reexamination.getShiftTitle()
         }
     }
 }
