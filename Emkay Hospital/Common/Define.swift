@@ -100,6 +100,7 @@ struct API {
     static let getExaminationRequests = API.baseURL + "patient/getListDatLich"
     static let getWorkdayList = API.baseURL + "doctor/getLichLamViec"
     static let getFeedbackList = API.baseURL + "doctor/getListGopY"
+    static let getStatus = API.baseURL + ""
     
     struct Key {
         static let errorCode = "errCode"

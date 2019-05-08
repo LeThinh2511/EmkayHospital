@@ -15,19 +15,19 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var cancelButton: UIButton!
     
     var patient: Patient!
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(fetchData), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = Constant.Color.darkGreen
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.beginLoading()
-        Service.sharedInstance.getPatientInfo(failure: { [weak self] (message) in
-            self?.endLoading()
-            self?.showAlert(title: Strings.alertTitle, message: message)
-        }) { [weak self] (patient) in
-            self?.patient = patient
-            self?.endLoading()
-            self?.tableView.reloadData()
-        }
+        self.fetchData()
         self.setupTableView()
+        self.tableView.addSubview(self.refreshControl)
     }
     
     @IBAction func didTapCancelButton(_ sender: UIButton) {
@@ -68,6 +68,20 @@ class ProfileViewController: BaseViewController {
     private func setupTableView() {
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    @objc private func fetchData() {
+        self.beginLoading()
+        Service.sharedInstance.getPatientInfo(failure: { [weak self] (message) in
+            self?.endLoading()
+            self?.refreshControl.endRefreshing()
+            self?.showAlert(title: Strings.alertTitle, message: message)
+        }) { [weak self] (patient) in
+            self?.patient = patient
+            self?.endLoading()
+            self?.refreshControl.endRefreshing()
+            self?.tableView.reloadData()
+        }
     }
 }
 
