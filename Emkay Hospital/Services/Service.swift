@@ -35,6 +35,23 @@ class Service {
         Service.idPatient = idPatient ?? ""
     }
     
+    func getFeedbackList(failure: @escaping (String) -> Void, success: @escaping ([Feedback]) -> Void) {
+        let url = API.getFeedbackList
+        let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
+        self.request(url: url, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: headers) { (result: ServiceResult<FeedbackList>) in
+            switch result {
+            case .failure(let message):
+                failure(message)
+            case .success(let response):
+                if response.errCode == 0 {
+                    success(response.feedbacks ?? [])
+                } else {
+                    failure(response.value ?? Messages.unexpectedError)
+                }
+            }
+        }
+    }
+    
     func getWorkdayList(failure: @escaping (String) -> Void, success: @escaping ([Workday]) -> Void) {
         let url = API.getWorkdayList
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
@@ -304,7 +321,7 @@ class Service {
         }
     }
     
-    func login(userName: String, password: String, failure: @escaping (String) -> Void, success: @escaping (Int) -> Void) {
+    func login(userName: String, password: String, failure: @escaping (String) -> Void, success: @escaping (Int, Bool?) -> Void) {
         let arrayStringEncoding = ArrayStringEncoding(array: [userName, password])
         let url = API.login
         let headers = ["Content-Type": "application/json"]
@@ -319,7 +336,8 @@ class Service {
                         return
                     }
                     Service.token = response.token ?? ""
-                    success(role)
+                    let isHeadDoctor = response.isHeadDoctor
+                    success(role, isHeadDoctor)
                 } else {
                     failure(response.value ?? Messages.unexpectedError)
                 }

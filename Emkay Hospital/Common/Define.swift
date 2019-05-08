@@ -99,6 +99,7 @@ struct API {
     static let getPrescription = API.baseURL + "bill/getDrugByHSKB"
     static let getExaminationRequests = API.baseURL + "patient/getListDatLich"
     static let getWorkdayList = API.baseURL + "doctor/getLichLamViec"
+    static let getFeedbackList = API.baseURL + "doctor/getListGopY"
     
     struct Key {
         static let errorCode = "errCode"

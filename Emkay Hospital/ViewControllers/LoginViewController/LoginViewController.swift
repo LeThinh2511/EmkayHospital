@@ -33,7 +33,7 @@ class LoginViewController: BaseViewController {
         self.service.login(userName: userName, password: password, failure: { [weak self] (message) in
             self?.endLoading()
             self?.showAlert(title: Strings.alertTitle, message: message)
-        }) { [weak self] (roleInt) in
+        }) { [weak self] (roleInt, isHeadDoctor) in
             let role = Role(rawValue: roleInt) ?? .unknown
             switch role {
             case .patient, .doctor, .receipt:
@@ -46,6 +46,8 @@ class LoginViewController: BaseViewController {
                     UserDefaults.standard.set(true, forKey: key)
                     key = UserDefaultKey.isDoctor
                     UserDefaults.standard.set(role == .doctor, forKey: key)
+                    key = UserDefaultKey.isHeadDoctor
+                    UserDefaults.standard.set(isHeadDoctor ?? false, forKey: key)
                     let storyboardName = UIStoryboard.patientStoryboard
                     let viewController: SelectPatientViewController = UIStoryboard.initViewController(in: storyboardName)
                     self?.present(viewController, animated: true, completion: nil)
