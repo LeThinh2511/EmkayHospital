@@ -18,6 +18,7 @@ class NotificationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchStatus()
     }
     
     @IBAction func didTapUpdateStatus(_ sender: Any) {
@@ -31,6 +32,15 @@ class NotificationViewController: BaseViewController {
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (status) in
             self?.endLoading()
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "dd-MM-yyyy"
+            let today = dateFormater.string(from: Date())
+            guard let date = status.date, date.dateString() == today else {
+                self?.examinationSoonContainerView.isHidden = false
+                self?.examinationSoonLabel.text = Strings.noExamination
+                self?.examinationNowContainerView.isHidden = true
+                return
+            }
         }
     }
 }

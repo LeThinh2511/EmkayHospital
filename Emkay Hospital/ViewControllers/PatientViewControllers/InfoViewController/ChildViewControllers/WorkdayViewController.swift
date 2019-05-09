@@ -79,9 +79,9 @@ extension WorkdayViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVie
         self.infoContainerView.isHidden = false
         let workday = self.workdays.first { (workday) -> Bool in
             let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyy-MM-dd"
+            dateFormater.dateFormat = "dd-MM-yyyy"
             let date = dateFormater.string(from: cellState.date)
-            return workday.date == date
+            return workday.date?.dateString() == date
         }
         self.shiftLabel.text = workday?.getShiftTitle()
         self.roomNameLabel.text = workday?.roomName
@@ -108,7 +108,7 @@ extension WorkdayViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVie
             dateFormater.dateFormat = "yyyy-MM-dd"
             let date = dateFormater.string(from: cellState.date)
             let isContained =  self.workdays.contains(where: { (workday) -> Bool in
-                return workday.date == date
+                return workday.date?.dateString() == date
             })
             currentCell.isWorkday = isContained
             currentCell.workdayView.isHidden = !isContained

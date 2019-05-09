@@ -16,7 +16,7 @@ class ReexaminationTableViewCell: BaseTableViewCell {
     
     var reexamination: Reexamination! {
         didSet {
-            self.dateLabel.text = self.reexamination.date
+            self.dateLabel.text = self.reexamination.date?.dateString()
             self.doctorNameLabel.text = self.reexamination.doctorName
             self.roomLabel.text = "\(self.reexamination.roomName ?? "") - \(self.reexamination.roomNumber ?? "")"
             self.shiftLabel.text = self.reexamination.getShiftTitle()

@@ -38,7 +38,7 @@ class MedicalRecordViewController: BaseViewController {
         }) { [weak self] (medicalRecord) in
             self?.endLoading()
             self?.medicalRecord = medicalRecord
-            self?.examinationDateLabel.text = medicalRecord.time
+            self?.examinationDateLabel.text = medicalRecord.time?.dateString()
             self?.doctorNameLabel.text = medicalRecord.doctorName
             self?.statusLabel.text = medicalRecord.statusTitle
             self?.roomNumberLabel.text = medicalRecord.roomNumber

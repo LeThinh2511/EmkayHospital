@@ -9,14 +9,15 @@
 import Foundation
 
 class Status: ServiceResponse {
-    var date: String?
+    var date: Date?
     var roomName: String?
     var roomNumber: String?
     var remainWaitingPeople: String?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.date = try container.decodeIfPresent(String.self, forKey: .date)
+        let date = try container.decodeIfPresent(String.self, forKey: .date)
+        self.date = Date.date(from: date)
         self.roomName = try container.decodeIfPresent(String.self, forKey: .roomName)
         self.roomNumber = try container.decodeIfPresent(String.self, forKey: .roomNumber)
         try super.init(from: decoder)

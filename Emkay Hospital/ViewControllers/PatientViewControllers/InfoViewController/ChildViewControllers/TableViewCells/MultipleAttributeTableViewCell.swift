@@ -44,13 +44,37 @@ class MultipleAttributeTableViewCell: BaseTableViewCell {
         for attribute in attributes {
             let singleAttributeView: SingleAttributeView = UIView.initFromNib()
             singleAttributeView.attribute = attribute
-            singleAttributeView.layoutIfNeeded()
-            singleAttributeView.layoutSubviews()
             self.stackView.addArrangedSubview(singleAttributeView)
         }
     }
     
     private func showAttributeLevel2() {
-        
+        self.stackView.removeAllSubviews()
+        guard let attributes = self.multipleAttribute.attributes else {
+            return
+        }
+        for attribute in attributes {
+            if attribute.level == 0 {
+                let singleAttributeView: SingleAttributeView = UIView.initFromNib()
+                singleAttributeView.attribute = attribute
+                self.stackView.addArrangedSubview(singleAttributeView)
+            } else if attribute.level == 1 {
+                guard let childAttributes = attribute.attributes else {
+                    return
+                }
+                var value = ""
+                for childAttribute in childAttributes {
+                    value += "\n +\(childAttribute.name ?? Strings.emptyAttribute): \(childAttribute.value ?? Strings.emptyAttribute)"
+                }
+                let newAttribue = Attribute(name: attribute.name, key: "", isArray: false)
+                newAttribue.value = value
+                let singleAttributeView: SingleAttributeView = UIView.initFromNib()
+                singleAttributeView.attribute = newAttribue
+                self.stackView.addArrangedSubview(singleAttributeView)
+            }
+        }
+        self.stackView.layoutIfNeeded()
+        self.stackView.layoutSubviews()
+        self.stackView.layoutIfNeeded()
     }
 }

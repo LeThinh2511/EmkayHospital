@@ -29,7 +29,7 @@ class ExaminationViewController: BaseViewController {
             self?.tableView.reloadData()
         }
         self.setupTableView()
-        self.examinationDateLabel.text = self.examination.date
+        self.examinationDateLabel.text = self.examination.date?.dateString()
         self.diseaseInfoLabel.text = self.examination.diseaseInfo
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 class MedicalRecord: ServiceResponse {
     var specialistName: String?
-    var time: String?
+    var time: Date?
     var doctorName: String?
     var roomNumber: String?
     var doctorGender: Gender?
@@ -36,7 +36,8 @@ class MedicalRecord: ServiceResponse {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.specialistName = try container.decodeIfPresent(String.self, forKey: .specialistName)
-        self.time = try container.decodeIfPresent(String.self, forKey: .time)
+        let time = try container.decodeIfPresent(String.self, forKey: .time)
+        self.time = Date.date(from: time)
         self.doctorName = try container.decodeIfPresent(String.self, forKey: .doctorName)
         self.roomNumber = try container.decodeIfPresent(String.self, forKey: .roomNumber)
         let genderCode = try container.decodeIfPresent(String.self, forKey: .doctorGender)
@@ -96,7 +97,14 @@ class MedicalRecord: ServiceResponse {
             attribute.level = 0
             attribute.type = type
             if let value = record[key ?? ""] {
-                attribute.value = String(describing: value)
+                let valueString = String(describing: value)
+                if valueString == "0" {
+                    attribute.value = "Không"
+                } else if valueString == "1" {
+                    attribute.value = "Có"
+                } else {
+                    attribute.value = valueString
+                }
             }
             return attribute
         } else {

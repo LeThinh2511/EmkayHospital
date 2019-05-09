@@ -10,14 +10,15 @@ import Foundation
 
 class Feedback: ServiceResponse {
     var id: String?
-    var time: String?
+    var time: Date?
     var content: String?
     var isSeen: Bool?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
-        self.time = try container.decodeIfPresent(String.self, forKey: .time)
+        let time = try container.decodeIfPresent(String.self, forKey: .time)
+        self.time = Date.date(from: time)
         self.content = try container.decodeIfPresent(String.self, forKey: .content)
         self.isSeen = try container.decodeIfPresent(Bool.self, forKey: .isSeen)
         try super.init(from: decoder)

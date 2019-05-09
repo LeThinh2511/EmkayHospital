@@ -62,7 +62,7 @@ struct Strings {
     static let edit = "Chỉnh sửa"
     static let save = "Lưu"
     static let cancel = "Huỷ"
-    static let emptyAttribute = "Không có nội dung"
+    static let emptyAttribute = ""
     static let examinationList = "Các đợt khám"
     static let medicalRecordList = "Các hồ sơ khám bệnh trong đợt khám"
     static let noExamination = "Chưa có thông tin đợt khám"

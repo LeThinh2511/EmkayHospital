@@ -28,7 +28,7 @@ class ProfileTableViewCell: BaseTableViewCell {
     var patient: Patient! {
         didSet {
             self.nameLabel.text = self.patient.name
-            self.birthdayTextField.text = self.patient.birthday
+            self.birthdayTextField.text = self.patient.birthday?.dateString()
             self.phoneTextField.text = self.patient.phone
             self.addressTextField.text = self.patient.address
             self.isMale = self.patient.gender ?? .unknown == .male
@@ -175,7 +175,7 @@ class ProfileTableViewCell: BaseTableViewCell {
         let date = self.datePicker.date
         self.birthdayTextField.text = date.dateString()
         self.datePickerContainerView.isHidden = true
-        self.patient.birthday = date.dateString()
+        self.patient.birthday = date
     }
     
     @IBAction func didTapAccountButton(_ sender: Any) {

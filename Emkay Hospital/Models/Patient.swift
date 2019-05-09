@@ -11,7 +11,7 @@ import Foundation
 class Patient: ServiceResponse {
     var id: String!
     var name: String?
-    var birthday: String?
+    var birthday: Date?
     var address: String?
     var phone: String?
     var insuranceID: String?
@@ -21,7 +21,8 @@ class Patient: ServiceResponse {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.birthday = try container.decodeIfPresent(String.self, forKey: .birthday)
+        let birthday = try container.decodeIfPresent(String.self, forKey: .birthday)
+        self.birthday = Date.date(from: birthday)
         self.address = try container.decodeIfPresent(String.self, forKey: .address)
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
         self.insuranceID = try container.decodeIfPresent(String.self, forKey: .insuranceID)

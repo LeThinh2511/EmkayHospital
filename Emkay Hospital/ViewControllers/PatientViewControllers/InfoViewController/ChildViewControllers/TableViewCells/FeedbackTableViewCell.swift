@@ -14,7 +14,7 @@ class FeedbackTableViewCell: BaseTableViewCell {
     
     var feedback: Feedback! {
         didSet {
-            self.timeLabel.text = self.feedback.time
+            self.timeLabel.text = self.feedback.time?.dateString()
             self.contentLabel.text = self.feedback.content
         }
     }

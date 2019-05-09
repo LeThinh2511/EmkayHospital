@@ -12,14 +12,15 @@ class Reexamination: ServiceResponse {
     var roomName: String?
     var roomNumber: String?
     var doctorName: String?
-    var date: String?
+    var date: Date?
     var shift: String?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.doctorName = try container.decodeIfPresent(String.self, forKey: .doctorName)
         self.shift = try container.decodeIfPresent(String.self, forKey: .shift)
-        self.date = try container.decodeIfPresent(String.self, forKey: .date)
+        let date = try container.decodeIfPresent(String.self, forKey: .date)
+        self.date = Date.date(from: date)
         self.roomNumber = try container.decodeIfPresent(String.self, forKey: .roomNumber)
         self.roomName = try container.decodeIfPresent(String.self, forKey: .roomName)
         try super.init(from: decoder)

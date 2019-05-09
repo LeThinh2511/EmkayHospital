@@ -11,7 +11,7 @@ import Foundation
 class SimpleMedicalRecord: ServiceResponse {
     var id: String!
     var status: String?
-    var date: String?
+    var date: Date?
     var roomNumber: String?
     var roomName: String?
     
@@ -19,7 +19,8 @@ class SimpleMedicalRecord: ServiceResponse {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
         self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.date = try container.decodeIfPresent(String.self, forKey: .date)
+        let date = try container.decodeIfPresent(String.self, forKey: .date)
+        self.date = Date.date(from: date)
         self.roomNumber = try container.decodeIfPresent(String.self, forKey: .roomNumber)
         self.roomName = try container.decodeIfPresent(String.self, forKey: .roomName)
         try super.init(from: decoder)

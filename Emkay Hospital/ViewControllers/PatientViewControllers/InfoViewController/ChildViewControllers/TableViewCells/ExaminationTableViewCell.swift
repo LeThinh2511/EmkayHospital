@@ -14,7 +14,7 @@ class ExaminationTableViewCell: BaseTableViewCell {
     
     var examination: Examination! {
         didSet {
-            self.examinationDateLabel.text = self.examination.date
+            self.examinationDateLabel.text = self.examination.date?.dateString()
             self.diseaseInfoLabel.text = self.examination.diseaseInfo
         }
     }

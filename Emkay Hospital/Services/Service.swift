@@ -287,7 +287,7 @@ class Service {
     func updatePatientInfo(patient: Patient, failure: @escaping (String) -> Void, success: @escaping () -> Void) {
         let url = String(format: API.updatePatientInfo, Service.idPatient)
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
-        let info = [patient.phone, patient.name, patient.birthday, patient.gender?.rawValue, patient.address]
+        let info = [patient.phone, patient.name, patient.birthday?.dateString(), patient.gender?.rawValue, patient.address]
         let arrayStringEncoding = ArrayStringEncoding(array: info)
         self.request(url: url, method: HTTPMethod.post, parameters: nil, encoding: arrayStringEncoding, headers: headers) { (result: ServiceResult<ServiceResponse>) in
             switch result {

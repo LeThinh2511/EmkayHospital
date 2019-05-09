@@ -9,14 +9,15 @@
 import Foundation
 
 class Workday: ServiceResponse {
-    var date: String?
+    var date: Date?
     var shift: String?
     var roomName: String?
     var roomNumber: String?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.date = try container.decodeIfPresent(String.self, forKey: .date)
+        let date = try container.decodeIfPresent(String.self, forKey: .date)
+        self.date = Date.date(from: date)
         self.roomName = try container.decodeIfPresent(String.self, forKey: .roomName)
         self.roomNumber = try container.decodeIfPresent(String.self, forKey: .roomNumber)
         self.shift = try container.decodeIfPresent(String.self, forKey: .shift)

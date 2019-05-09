@@ -14,7 +14,7 @@ class ExaminationRequestTableViewCell: BaseTableViewCell {
     
     var examinationRequest: ExaminationRequest! {
         didSet {
-            self.dateLabel.text = self.examinationRequest.examinationTime
+            self.dateLabel.text = self.examinationRequest.examinationTime?.dateString()
             self.statusLabel.text = self.examinationRequest.isProcessedTitle
         }
     }
