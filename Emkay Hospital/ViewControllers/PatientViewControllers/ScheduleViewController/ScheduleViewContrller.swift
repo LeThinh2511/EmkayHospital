@@ -50,6 +50,11 @@ class ScheduleViewController: BaseViewController {
             return
         }
         let date = self.datePicker.date
+        let buttonTitle = self.selectDateButton.titleLabel?.text ?? ""
+        if self.dateFormater.string(from: date) != buttonTitle {
+            self.showAlert(title: Strings.alertTitle, message: Messages.notYetSelectDate)
+            return
+        }
         let dateString = self.dateFormater.string(from: date)
         self.beginLoading()
         Service.sharedInstance.scheduleExamination(content: content, date: dateString, failure: { [weak self] (message) in
@@ -57,6 +62,7 @@ class ScheduleViewController: BaseViewController {
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] () in
             self?.endLoading()
+            self?.contentTextView.text = ""
             self?.getExaminationRequestList()
             self?.showAlert(title: Strings.alertTitle, message: Messages.scheduleExaminationRequestSent)
         }
@@ -74,7 +80,12 @@ class ScheduleViewController: BaseViewController {
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (examinationRequests) in
             self?.endLoading()
-            self?.examinationRequests = examinationRequests
+            self?.examinationRequests = examinationRequests.filter({ (examinationRequest) -> Bool in
+                guard let date = examinationRequest.examinationTime else {
+                    return false
+                }
+                return date >= Date()
+            })
             self?.tableView.reloadData()
         }
     }

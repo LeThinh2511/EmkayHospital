@@ -51,6 +51,7 @@ struct Messages {
     static let scheduleExaminationRequestSent = "Đã gửi yêu cầu đặt lịch khám"
     static let updatePasswordSuccess = "Đổi mật khẩu thành công"
     static let newPasswordNotMatch = "Mật khẩu mới không khớp"
+    static let notYetSelectDate = "Chưa chọn ngày"
 }
 
 struct Strings {
