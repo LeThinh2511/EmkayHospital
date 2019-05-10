@@ -13,6 +13,7 @@ class Examination: ServiceResponse {
     var diseaseInfo: String?
     var date: Date?
     var status: String?
+    var isPaid: String?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -21,6 +22,7 @@ class Examination: ServiceResponse {
         let date = try container.decodeIfPresent(String.self, forKey: .date)
         self.date = Date.date(from: date)
         self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.isPaid = try container.decodeIfPresent(String.self, forKey: .isPaid)
         try super.init(from: decoder)
     }
     
@@ -29,5 +31,6 @@ class Examination: ServiceResponse {
         case diseaseInfo = "ThongTinBenh"
         case date = "NgayKham"
         case status = "Status"
+        case isPaid = "IsThanhToan"
     }
 }

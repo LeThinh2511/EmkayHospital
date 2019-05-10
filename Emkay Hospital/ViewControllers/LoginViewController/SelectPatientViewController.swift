@@ -21,9 +21,15 @@ class SelectPatientViewController: BaseViewController {
             self?.endLoading()
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (patientList) in
-            self?.patientList = patientList
-            self?.tableView.reloadData()
-            self?.endLoading()
+            self?.service.getPatientInfo(failure: { (message) in
+                self?.endLoading()
+                self?.showAlert(title: Strings.alertTitle, message: message)
+            }, success: { (patient) in
+                self?.endLoading()
+                self?.patientList = patientList
+                self?.patientList.append(patient)
+                self?.tableView.reloadData()
+            })
         }
         
     }
@@ -49,7 +55,18 @@ extension SelectPatientViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let patient = self.patientList[indexPath.row]
-        Service.idPatient = patient.id
+        if let id = patient.id {
+            Service.idPatient = id
+            var key = UserDefaultKey.isDoctor
+            UserDefaults.standard.set(false, forKey: key)
+            key = UserDefaultKey.isHeadDoctor
+            UserDefaults.standard.set(false, forKey: key)
+        } else {
+            var key = UserDefaultKey.isDoctor
+            UserDefaults.standard.set(true, forKey: key)
+            key = UserDefaultKey.isHeadDoctor
+            UserDefaults.standard.set(true, forKey: key)
+        }
         let storyboardName = UIStoryboard.patientStoryboard
         let viewController: PatientTabBarController = UIStoryboard.initViewController(in: storyboardName)
         self.present(viewController, animated: true, completion: nil)

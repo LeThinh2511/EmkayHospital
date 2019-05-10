@@ -29,17 +29,36 @@ class NotificationViewController: BaseViewController {
         self.beginLoading()
         Service.sharedInstance.getStatus(failure: { [weak self] (message) in
             self?.endLoading()
-            self?.showAlert(title: Strings.alertTitle, message: message)
+            self?.examinationSoonContainerView.isHidden = false
+            self?.examinationSoonLabel.text = Strings.noExamination
+            self?.examinationNowContainerView.isHidden = true
         }) { [weak self] (status) in
             self?.endLoading()
             let dateFormater = DateFormatter()
             dateFormater.dateFormat = "dd-MM-yyyy"
             let today = dateFormater.string(from: Date())
-            guard let date = status.date, date.dateString() == today else {
+            guard let date = status.date else {
                 self?.examinationSoonContainerView.isHidden = false
                 self?.examinationSoonLabel.text = Strings.noExamination
                 self?.examinationNowContainerView.isHidden = true
                 return
+            }
+            if date.dateString() == today {
+                if let numOfPeople = status.remainWaitingPeople, numOfPeople == 0 {
+                    self?.statusLabel.text = Strings.examinationInvite
+                    self?.statusLabel.textColor = Constant.Color.darkGreen
+                } else {
+                    self?.statusLabel.text = Strings.pleaseWait
+                    self?.statusLabel.textColor = UIColor.red
+                }
+                self?.examinationSoonContainerView.isHidden = true
+                self?.remainWaitingPeopleLabel.text = "\(status.remainWaitingPeople ?? 0)"
+                self?.roomLabel.text = "\(status.roomName ?? "") - \(status.roomNumber ?? "")"
+                self?.examinationNowContainerView.isHidden = false
+            } else {
+                self?.examinationSoonContainerView.isHidden = false
+                self?.examinationSoonLabel.text = String(format: Strings.examinationSoon, date.dateString(), "\(status.roomName ?? "") -  \(status.roomNumber ?? "")")
+                self?.examinationNowContainerView.isHidden = true
             }
         }
     }

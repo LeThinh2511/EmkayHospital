@@ -59,6 +59,11 @@ extension OverallMedicalRecordViewController: UITableViewDelegate, UITableViewDa
         let identifier = ExaminationTableViewCell.identifier
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ExaminationTableViewCell
         cell.examination = self.examinations[indexPath.row]
+        if self.examinations[indexPath.row].isPaid == "1" {
+            cell.isUserInteractionEnabled = true
+        } else {
+            cell.isUserInteractionEnabled = false
+        }
         return cell
     }
     
@@ -68,7 +73,7 @@ extension OverallMedicalRecordViewController: UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if self.examinations.isEmpty {
-            return Strings.noExamination
+            return Strings.noExaminationInfo
         } else {
             return nil
         }

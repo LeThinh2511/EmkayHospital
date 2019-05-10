@@ -38,7 +38,8 @@ class Service {
     func getStatus(failure: @escaping (String) -> Void, success: @escaping (Status) -> Void) {
         let url = API.getStatus
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
-        self.request(url: url, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: headers) { (result: ServiceResult<Status>) in
+        let parameters = [API.Key.idPatient: Service.idPatient]
+        self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<Status>) in
             switch result {
             case .failure(let message):
                 failure(message)
@@ -304,7 +305,9 @@ class Service {
     }
     
     func getPatientInfo(failure: @escaping (String) -> Void, success: @escaping (Patient) -> Void) {
-        let url = API.getPatientInfo
+        let key = UserDefaultKey.isDoctor
+        let isDoctor = UserDefaults.standard.bool(forKey: key)
+        let url = isDoctor ? API.getDoctorInfo : API.getPatientInfo
         let headers = ["Content-Type": "application/json", API.Key.token: Service.token]
         let parameters = [API.Key.idPatient : Service.idPatient]
         self.request(url: url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: headers) { (result: ServiceResult<Patient>) in

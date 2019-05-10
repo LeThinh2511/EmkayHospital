@@ -66,7 +66,7 @@ struct Strings {
     static let emptyAttribute = ""
     static let examinationList = "Các đợt khám"
     static let medicalRecordList = "Các hồ sơ khám bệnh trong đợt khám"
-    static let noExamination = "Chưa có thông tin đợt khám"
+    static let noExaminationInfo = "Chưa có thông tin đợt khám"
     static let noMedicalRecord = "Chưa có thông tin hồ sơ khám bệnh"
     static let selectAttribute = "Chọn"
     static let logout = "Đăng xuất"
@@ -77,6 +77,10 @@ struct Strings {
     static let confirmPassword = "Xác nhận mật khẩu"
     static let noExaminationRequest = "Chưa có yêu cầu đặt lịch khám"
     static let examinationRequests = "Danh sách lịch đã đặt"
+    static let noExamination = "Không có đợt khám"
+    static let examinationSoon = "Bạn có lịch khám vào ngày %@ tại %@"
+    static let examinationInvite = "Đã đến lượt khám của bạn"
+    static let pleaseWait = "Vui lòng chờ"
 }
 
 struct API {
@@ -101,7 +105,8 @@ struct API {
     static let getExaminationRequests = API.baseURL + "patient/getListDatLich"
     static let getWorkdayList = API.baseURL + "doctor/getLichLamViec"
     static let getFeedbackList = API.baseURL + "doctor/getListGopY"
-    static let getStatus = API.baseURL + ""
+    static let getStatus = API.baseURL + "patient/getStatus"
+    static let getDoctorInfo = API.baseURL + "account/getinfo"
     
     struct Key {
         static let errorCode = "errCode"
