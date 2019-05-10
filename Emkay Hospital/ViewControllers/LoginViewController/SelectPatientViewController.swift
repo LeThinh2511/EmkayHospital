@@ -21,15 +21,23 @@ class SelectPatientViewController: BaseViewController {
             self?.endLoading()
             self?.showAlert(title: Strings.alertTitle, message: message)
         }) { [weak self] (patientList) in
-            self?.service.getPatientInfo(failure: { (message) in
-                self?.endLoading()
-                self?.showAlert(title: Strings.alertTitle, message: message)
-            }, success: { (patient) in
+            let key = UserDefaultKey.isDoctor
+            let isDoctor = UserDefaults.standard.bool(forKey: key)
+            if isDoctor {
+                self?.service.getPatientInfo(failure: { (message) in
+                    self?.endLoading()
+                    self?.showAlert(title: Strings.alertTitle, message: message)
+                }, success: { (patient) in
+                    self?.endLoading()
+                    self?.patientList = patientList
+                    self?.patientList.append(patient)
+                    self?.tableView.reloadData()
+                })
+            } else {
                 self?.endLoading()
                 self?.patientList = patientList
-                self?.patientList.append(patient)
                 self?.tableView.reloadData()
-            })
+            }
         }
         
     }
